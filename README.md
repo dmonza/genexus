@@ -87,7 +87,7 @@
   - [2.1](#enums--use) Utilizar una identación/tabulación de 3 espacios.
     > Esto es porque la mayoría de los comandos queda mas legibles con esta tabulación.
 
-	 ```javascript
+	 ```clipper
     // mal
     if &DocumentoTipo = DocumentoTipos.Venta
     msg("Venta")

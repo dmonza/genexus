@@ -1,19 +1,20 @@
-# Guia de estilo para el desarrollo en GeneXus de Sincrum {
+# Sincrum - Guia de estilo para el desarrollo en GeneXus {
 
 ## Tabla de Contenidos
 
   1. [Definición de nombres](#definición-de-nombres)
   1. [Dominios enumerados](#dominios-enumerados)
   1. [Identación](#identación)
-  1. [Contributors](#contributors)
-  1. [License](#license)
+  1. [Recursos](#recursos)
+  1. [Colaboradores](#colaboradores)
+  1. [Licencia](#licencia)
 
 ## Definición de nombres
 
   <a name="naming--descriptive"></a><a name="1.1"></a>
   - [1.1](#naming--descriptive) Se debe ser descriptivo con los nombres.
 
-    ```foxpro
+    ```javascript
     // mal
     Proc: CliCre
 
@@ -24,7 +25,7 @@
   <a name="naming--camelCase"></a><a name="1.2"></a>
   - [1.2](#naming--PascalCase) Utilizar PascalCase al nombrar objetos, atributos y variables.
 
-    ```foxpro
+    ```javascript
     // mal
     clientecrear
 
@@ -36,7 +37,7 @@
   - [1.3](#naming--commands) Utilizar minúsculas al nombrar comandos.
 	> Se intenta reservar la utilización de CASE en los casos que se necesite dar sentido a una entidad, ej. Variables, Atributos y Objetos.
 
-    ```foxpro
+    ```javascript
     // mal
     For Each
     	Where CliCod = &CliCod
@@ -55,7 +56,7 @@
 
     > Esto puede hacer suponer a un programador proveniente de otros lenguajes que tiene algún significado de privacidad.
 
-    ```foxpro
+    ```javascript
     // mal
     &_CliNom = "John Doe"
     &CliNom_ = "John Doe"
@@ -79,7 +80,7 @@
     DocumentoModos (Credito, Débito)
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[Volver al inicio](#tabla-de-contenidos)**
 
 
 ## Identación
@@ -87,7 +88,7 @@
   - [2.1](#enums--use) Utilizar una identación/tabulación de 3 espacios.
     > Esto es porque la mayoría de los comandos queda mas legibles con esta tabulación.
 
-	 ```clipper
+	 ```javascript
     // mal
     if &DocumentoTipo = DocumentoTipos.Venta
     msg("Venta")
@@ -132,7 +133,7 @@
     endfor
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[Volver al inicio](#tabla-de-contenidos)**
 
 ## Dominios enumerados
   <a name="enums--use"></a><a name="3.1"></a>
@@ -147,23 +148,22 @@
     if &HttpResponse = HttpMethods.Get
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[Volver al inicio](#tabla-de-contenidos)**
 
-## Resources
+## Recursos
 
-**Further Reading**
+**Lectura interesante**
 
   - [GeneXus Wiki](http://wiki.genexus.com/) - GeneXus
 
-## Contributors
+## Colaboradores
 
-  - You are welcome
+  - Son bienvenidos a colaborar.
 
+## Licencia
 
-## License
+[Documento bajo licencia MIT](LICENSE)
 
-[The MIT License](LICENSE)
-
-**[⬆ back to top](#table-of-contents)**
+**[Volver al inicio](#tabla-de-contenidos)**
 
 # };

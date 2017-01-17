@@ -13,7 +13,7 @@
 
   <a name="naming--descriptive"></a><a name="1.1"></a>
   - [1.1](#naming--descriptive) Se debe ser descriptivo con los nombres.
-
+	> Se intenta reservar la utilización de CASE en los casos que se necesite dar sentido a una entidad, ej. Variables, Atributos y Objetos.
     ```javascript
     // mal
     Proc: CliCre
@@ -53,7 +53,6 @@
 
   <a name="naming--leading-underscore"></a><a name="1.4"></a>
   - [1.4](#naming--leading-underscore) No utilizar underscore al inicio o final en ningún tipo de objeto, atributo o variable. 
-
     > Esto puede hacer suponer a un programador proveniente de otros lenguajes que tiene algún significado de privacidad.
 
     ```javascript
@@ -80,6 +79,20 @@
     DocumentoModos (Credito, Débito)
     ```
 
+  <a name="naming--procs"></a><a name="1.6"></a>
+  - [1.5](#naming--procs) Nombrar procedimientos relacionados con una entidad iniciando con la entidad en singular y la acción.
+	> Esto permite agrupar los objetos de la misma entidad en la selección de objetos entre otros.
+	
+    ```javascript
+    // mal
+    CreCli
+    CrearCliente
+    
+    // bien
+    ClienteCrear
+	ClienteEliminar
+	DocumentoRecalculo
+	
 **[Volver al inicio](#tabla-de-contenidos)**
 
 

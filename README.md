@@ -14,6 +14,7 @@
   <a name="naming--descriptive"></a><a name="1.1"></a>
   - [1.1](#naming--descriptive) Se debe ser descriptivo con los nombres.
 	> Se intenta reservar la utilización de CASE en los casos que se necesite dar sentido a una entidad, ej. Variables, Atributos y Objetos.
+	
     ```javascript
     // mal
     Proc: CliCre
@@ -92,9 +93,9 @@
     ClienteCrear
 	ClienteEliminar
 	DocumentoRecalculo
+	```
 	
 **[Volver al inicio](#tabla-de-contenidos)**
-
 
 ## Identación
   <a name="enums--use"></a><a name="2.1"></a>

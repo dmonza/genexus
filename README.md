@@ -81,7 +81,7 @@
     ```
 
   <a name="naming--procs"></a><a name="1.6"></a>
-  - [1.5](#naming--procs) Nombrar procedimientos relacionados con una entidad iniciando con la entidad en singular y la acción.
+  - [1.6](#naming--procs) Nombrar procedimientos relacionados con una entidad iniciando con la entidad en singular y la acción.
 	> Esto permite agrupar los objetos de la misma entidad en la selección de objetos entre otros.
 	
     ```javascript
@@ -94,7 +94,23 @@
 	ClienteEliminar
 	DocumentoRecalculo
 	```
+
+  <a name="naming--procs"></a><a name="1.7"></a>
+  - [1.7](#naming--procs) Utilizar [nomenclatura GIK](http://wiki.genexus.com/commwiki/servlet/wiki?1872,GIK) para nombrar atributos. En lo posible, intentar utilizar los nombres completos en lugar de 3 caracteres.
+	> Estandard desde los inicios de GeneXus.
 	
+    ```javascript
+    // mal
+    CreCliFch
+    FechaCreadoCliente
+    
+    // bien
+    CliFchCre
+    
+    // mejor
+	ClienteFechaCreado
+	```
+
 **[Volver al inicio](#tabla-de-contenidos)**
 
 ## Identación

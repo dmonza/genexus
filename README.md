@@ -120,7 +120,7 @@
 
 ## Identación y espaciado
   <a name="whitespace-tab"></a><a name="2.1"></a>
-  - [2.1](#whitespace-tab) Utilizar una identación/tabulación de 3 espacios.
+  - [2.1](#whitespace-tab) Siempre que se pueda, utilizar tabuladores en lugar de "espacios". De esta forma, cada uno puede visializar la cantidad de espacioes que prefiera, ya que se configura en GeneXus. En los casos que no se pueda, y para definir un criterio, se utiliza una identación/tabulación de 3 espacios.
     > Esto es porque la mayoría de los comandos queda mas legibles con esta tabulación.
 
 	 ```javascript

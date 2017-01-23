@@ -87,7 +87,7 @@
 	```
 
   <a name="naming-gik"></a><a name="1.6"></a>
-  - [1.6](#naming-gik) Utilizar [nomenclatura GIK](http://wiki.genexus.com/commwiki/servlet/wiki?1872,GIK) para nombrar atributos. En lo posible, intentar utilizar los nombres completos en lugar de 3 caracteres.
+  - [1.6](#naming-gik) Utilizar [nomenclatura GIK](http://wiki.genexus.com/commwiki/servlet/wiki?1872,GIK) para nombrar atributos. Se pueden crear atributos sin el límite de los 3 caracteres si el nombre no supera los 20 caracteres y mejora la comprensión.
 	> Estandard desde los inicios de GeneXus.
 	
     ```javascript
@@ -120,8 +120,8 @@
 
 ## Identación y espaciado
   <a name="whitespace-tab"></a><a name="2.1"></a>
-  - [2.1](#whitespace-tab) Siempre que se pueda, utilizar tabuladores en lugar de "espacios". De esta forma, cada uno puede visializar la cantidad de espacioes que prefiera, ya que se configura en GeneXus. En los casos que no se pueda, y para definir un criterio, se utiliza una identación/tabulación de 3 espacios.
-    > Esto es porque la mayoría de los comandos queda mas legibles con esta tabulación.
+  - [2.1](#whitespace-tab) Utilizar tabuladores (tab) en lugar de "espacios". De esta forma, cada uno puede visializar la cantidad de espacioes que prefiera, ya que se configura en GeneXus.
+    > La identación ofrece a los desarrolladores una mejor lectura del código fuente. Si tomamos una identación estandard, facilitará al resto entednder el código fuente.
 
 	 ```javascript
     // mal
@@ -131,12 +131,7 @@
 
     // mal
     if &DocumentoTipo = DocumentoTipos.Venta
-      msg("Venta")
-    endif
-
-    // mal
-    if &DocumentoTipo = DocumentoTipos.Venta
-        msg("Venta")
+    		msg("Venta")
     endif
 
     // bien
@@ -198,7 +193,8 @@
     if &HttpResponse = "GET"
     
     // bien
-    if &HttpResponse = HttpMethods.Get
+    // Crear un dominio enumerado HTTPMethods con los posibles valores ( POST, GET)
+    if &HttpResponse = HTTPMethods.Get
     ```
 
 **[Volver al inicio](#tabla-de-contenidos)**

@@ -158,8 +158,8 @@
 
     // bien
     for each
-    	where DocumentoTipo = DocumentoTipos.Venta
-    	...
+       where DocumentoTipo = DocumentoTipos.Venta
+       ...
     endfor
     ```
 
@@ -210,15 +210,15 @@
     
     // mal
     for each Clientes
-    	&Cliente.CliNom = CliNom
-        &Clientes.Add( &Cliente.Clone() )
+       &Cliente.CliNom = CliNom
+       &Clientes.Add( &Cliente.Clone() )
     endfor
     
     // bien
     for each Clientes
-    	&Cliente = new()
-    	&Cliente.CliNom = CliNom
-        &Clientes.Add( &Cliente )
+       &Cliente = new()
+       &Cliente.CliNom = CliNom
+       &Clientes.Add( &Cliente )
     endfor
     ```
   <a name="sdt-list"></a><a name="4.1"></a>
@@ -289,7 +289,7 @@
      * &CliDir
      */
     sub 'CrearCliente'
-      // ...
+       // ...
     endsub
     ```
 
@@ -306,29 +306,29 @@
 
     // mal
     sub 'CrearCliente'
-      msg( "Creando cliente", status )
-      // Se crea el cliente
-      &ClienteBC = new()
-      &ClienteBC.CliNom = "John Doe"
-      &ClienteBC.Save()
+       msg( "Creando cliente", status )
+       // Se crea el cliente
+       &ClienteBC = new()
+       &ClienteBC.CliNom = "John Doe"
+       &ClienteBC.Save()
     endsub
 
     // bien
     sub 'CrearCliente'
-      msg( "Creando cliente", status )
-
-      // Se crea el cliente
-      &ClienteBC = new()
-      &ClienteBC.CliNom = "John Doe"
-      &ClienteBC.Save()
+       msg( "Creando cliente", status )
+		
+       // Se crea el cliente
+       &ClienteBC = new()
+       &ClienteBC.CliNom = "John Doe"
+       &ClienteBC.Save()
     endsub
 
     // también está bien
     sub 'CrearCliente'
-      // Se crea el cliente
-      &ClienteBC = new()
-      &ClienteBC.CliNom = "John Doe"
-      &ClienteBC.Save()
+       // Se crea el cliente
+       &ClienteBC = new()
+       &ClienteBC.CliNom = "John Doe"
+       &ClienteBC.Save()
     endsub
     ```
 
@@ -389,14 +389,14 @@
     ```javascript
     // mal
     For Each
-    	Where CliCod = &CliCod
-        Msg(CliNom)
+       Where CliCod = &CliCod
+       Msg(CliNom)
     EndFor
 
     // bien
     for each
-    	where CliCod = &CliCod
-        msg(CliNom)
+       where CliCod = &CliCod
+       msg(CliNom)
     endfor
     
     // mal
@@ -425,6 +425,7 @@
           ...
        case &DocTipo = DocumentoTipos.Compra
           ...
+          
 	endcase
     
     // bien

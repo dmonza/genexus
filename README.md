@@ -162,9 +162,46 @@
        ...
     endfor
     ```
+  <a name="whitespace-where"></a><a name="2.3"></a>
+  - [2.3](#whitespace-where) Si en un [for each]() se especifican where, defined by ú otros, dejar una línea en blanco antes del código.
 
-  <a name="whitespace-parms"></a><a name="2.3"></a>
-  - [2.3](#whitespace-parms) Dejar un espacio antes de cada parámetro.
+	 ```javascript
+    // mal
+    for each
+       where DocumentoTipo = DocumentoTipos.Venta
+       if DocTot > LimCreMto
+          ...
+       endif
+    endfor
+
+    // mal
+    for each
+       defined by ClienteNombre
+       for each Documentos
+          ...
+       endfor
+    endfor
+
+    // bien
+    for each
+       where DocumentoTipo = DocumentoTipos.Venta
+	   
+       if DocTot > LimCreMto
+          ...
+       endif
+    endfor
+
+    // bien
+    for each
+       defined by ClienteNombre
+       
+       for each Documentos
+          ...
+       endfor
+    endfor    ```
+
+  <a name="whitespace-parms"></a><a name="2.4"></a>
+  - [2.4](#whitespace-parms) Dejar un espacio antes de cada parámetro.
 	> Hace a la sentencia más sencilla de leer.
 
 	 ```javascript

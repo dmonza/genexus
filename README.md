@@ -329,7 +329,7 @@
        // ...
     endsub
     ```
-	
+
   <a name="comments--singleline"></a><a name="6.2"></a>
   - [6.2](#comments--singleline) Utilizar `//` para comentarios de una sola línea. Estos comentarios deben estar una línea antes del sujeto a comentar. Dejar una línea en blanco antes del comentarios a no ser que seal la pimer línea del bloque.
 

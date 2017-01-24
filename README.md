@@ -162,8 +162,8 @@
        ...
     endfor
     ```
-  <a name="whitespace-where"></a><a name="2.3"></a>
-  - [2.3](#whitespace-where) Si en un [for each]() se especifican where, defined by ú otros, dejar una línea en blanco antes del código.
+  <a name="whitespace-newline"></a><a name="2.3"></a>
+  - [2.3](#whitespace-newline) Si en un [for each](http://wiki.genexus.com/commwiki/servlet/wiki?24744,For%20Each%20command) se especifican where, defined by ú otros, dejar una línea en blanco antes del código.
 
 	 ```javascript
     // mal
@@ -307,7 +307,7 @@
 
   <a name="comments--multiline"></a><a name="6.1"></a>
   - [6.1](#comments--multiline) Utilizar `/** ... */` para comentarios multi-línea.
-
+	
     ```javascript
     // mal
     // CrearCliente crea una nuevo cliente
@@ -317,7 +317,7 @@
     sub 'CrearCliente'
       // ...
     endsub
-
+	
     // bien
     /**
      * CrearCliente crea una nuevo cliente
@@ -329,7 +329,7 @@
        // ...
     endsub
     ```
-
+	
   <a name="comments--singleline"></a><a name="6.2"></a>
   - [6.2](#comments--singleline) Utilizar `//` para comentarios de una sola línea. Estos comentarios deben estar una línea antes del sujeto a comentar. Dejar una línea en blanco antes del comentarios a no ser que seal la pimer línea del bloque.
 

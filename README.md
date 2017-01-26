@@ -479,7 +479,7 @@
     ```
 
   <a name="commands--foreach-where"></a><a name="7.3"></a>
-  - [7.3](#commands--foreach-where) Utilizar clusula where en comandos [for each](http://wiki.genexus.com/commwiki/servlet/wiki?24744,For%20Each%20command) en lugar de usar comandos "if", siempre que se trate de atributos de la [tabla extendida](http://training.genexus.com/resumen-de-conceptos-fundamentales-de-genexus-es#tabla-base-y-tabla-extendida-resumen-de-conceptos-fundamentales).
+  - [7.3](#commands--foreach-where) Utilizar clausula where en comandos [for each](http://wiki.genexus.com/commwiki/servlet/wiki?24744,For%20Each%20command) en lugar de usar comandos "if", siempre que se trate de atributos de la [tabla extendida](http://training.genexus.com/resumen-de-conceptos-fundamentales-de-genexus-es#tabla-base-y-tabla-extendida-resumen-de-conceptos-fundamentales).
 	> Con esto logramos trasladar la condición al DBMS y hacer que forme parte de la query select evitando trabajar con grandes volumenes de datos en el servidor de aplicación ó eventualmente en el cliente.
 
     ```javascript
@@ -498,7 +498,7 @@
     ```
 
   <a name="commands--foreach-when"></a><a name="7.4"></a>
-  - [7.4](#commands--foreach-when) Utilizar el when en comandos [for each](http://wiki.genexus.com/commwiki/servlet/wiki?24744,For%20Each%20command) para simplificar la query enviada al DBMS.
+  - [7.4](#commands--foreach-when) Utilizar when en comandos [for each](http://wiki.genexus.com/commwiki/servlet/wiki?24744,For%20Each%20command) para simplificar la query enviada al DBMS.
 
     ```javascript
     // mal

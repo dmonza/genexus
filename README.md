@@ -202,6 +202,7 @@
 
   <a name="whitespace-parms"></a><a name="2.4"></a>
   - [2.4](#whitespace-parms) Dejar un espacio antes de cada parámetro.
+
 	> Hace a la sentencia más sencilla de leer.
 
 	 ```javascript

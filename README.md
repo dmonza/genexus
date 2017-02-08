@@ -165,7 +165,7 @@
   <a name="whitespace-newline"></a><a name="2.3"></a>
   - [2.3](#whitespace-newline) Si en un [for each](http://wiki.genexus.com/commwiki/servlet/wiki?24744,For%20Each%20command) se especifican where, defined by ú otros, dejar una línea en blanco antes del código.
 
-	 ```javascript
+	```javascript
     // mal
     for each
        where DocumentoTipo = DocumentoTipos.Venta
@@ -198,8 +198,9 @@
        for each Documentos
           ...
        endfor
-    endfor    ```
-
+    endfor
+	```
+    
   <a name="whitespace-parms"></a><a name="2.4"></a>
   - [2.4](#whitespace-parms) Dejar un espacio antes de cada parámetro.
 

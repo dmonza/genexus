@@ -103,17 +103,17 @@
 	```
 
   <a name="naming-trns"></a><a name="1.7"></a>
-  - [1.7](#naming-trns) Las transacciones deben tener el nombre de la entidad en plural.
-	> Las transacciones definen el nombre de las tablas en GeneXus. Se defien en plural ya que estas contienen N registros de la misma entidad.
+  - [1.7](#naming-trns) Las transacciones deben tener el nombre de la entidad en singular.
+	> Se define así porque en la comunidad GeneXus está claro que queda mejor a la hora de trabaja por ejmeplo con [Business Component](http://wiki.genexus.com/commwiki/servlet/wiki?5846,Toc%3ABusiness+Component). También es requerimiento de algunos patterns GeneXus para su correcta visualización (ej.: K2BTools).
 	
     ```javascript
     // mal
-    Trn:Articulo
-    Trn:Cliente
+    Trn:Articulos
+    Trn:Clientes
     
     // bien
-    Trn:Clientes
-    Trn:Articulos
+    Trn:Cliente
+    Trn:Articulo
 	```
 
 **[Volver al inicio](#tabla-de-contenidos)**

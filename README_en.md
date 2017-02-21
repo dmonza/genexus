@@ -570,7 +570,7 @@
   This is a list of organizations that are using this style guide. Let us know your feedback and if you want to be added to this list (or a specific fork) and we will add you.
 
 - [**Sincrum**](http://sincrum.com)
-- [**Tangocode**](http://tangocode.com)
+- [**TangoCode**](http://tangocode.com)
 
 ## Translation
 

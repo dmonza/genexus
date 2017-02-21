@@ -11,9 +11,10 @@
   1. [Commands and Functions](#commands-and-functions)
   1. [Parameters](#parameters)
   1. [Resources](#resources)
-  1. [Empresas que utilizan esta guia](#empresas-que-utilizan-esta-guia)
-  1. [Colaboradores](#colaboradores)
-  1. [Licencia](#licencia)
+  1. [Companies that use this guide](#companies-that-use-this-guide)
+  2. [Translation](#translation)
+  1. [Colaboradorators](#colaboradorators)
+  1. [License](#license)
 
 ## Naming
 
@@ -569,13 +570,24 @@
   This is a list of organizations that are using this style guide. Let us know your feedback and if you want to be added to this list (or a specific fork) and we will add you.
 
 - [**Sincrum**](http://sincrum.com)
-- [**Tangocode**] (http://tangocode.com)
+- [**Tangocode**](http://tangocode.com)
+
+## Translation
+
+This style guide is also available in other languages:
+
+  - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) [**Español**](README.md)
+
+**[Back to Top](#table-of-contents)**
 
 ## Colaboradorators
 
-  - You are welcome to collaborate.
+You are welcome to collaborate.
 
-## Licencia
+  - [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
+  - [Laura Aguiar](https://uy.linkedin.com/in/laura-aguiar-396aa56)
+
+## License
 
 [Document created by Daniel Monza under MIT licence](LICENSE)
 based on [AirBNB Javascript guide](http://airbnb.io/javascript/)

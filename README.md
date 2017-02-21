@@ -12,6 +12,7 @@
   1. [Parámetros](#parámetros)
   1. [Recursos](#recursos)
   1. [Empresas que utilizan esta guia](#empresas-que-utilizan-esta-guia)
+  1. [Traducciones](#traducciones)
   1. [Colaboradores](#colaboradores)
   1. [Licencia](#licencia)
 
@@ -547,10 +548,23 @@
   Esta es una lista de las empresas que están utilizando esta guia de desarrollo.  This is a list of organizations that are using this style guide. Haganos saber si su empresa utiliza esta guia o un fork de la misma y lo agregaremos.
 
 - [**Sincrum**](http://sincrum.com)
+- [**Tangocode**](http://tangocode.com)
+
+**[Volver al inicio](#tabla-de-contenidos)**
+
+## Traducciones
+Esta guia de estilo se encuentra también en los siguientes lenguajes:
+
+  - ![us](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/United-States.png) [**English**](README_en.md) by Lali
+
+**[Volver al inicio](#tabla-de-contenidos)**
 
 ## Colaboradores
 
-  - Son bienvenidos a colaborar.
+El proyecto está abierto a todo el que quiera colaborar.
+
+  - [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
+  - [Laura Aguiar](https://uy.linkedin.com/in/laura-aguiar-396aa56)
 
 ## Licencia
 

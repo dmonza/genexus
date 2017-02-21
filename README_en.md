@@ -68,7 +68,7 @@
     
     // good
     DocumentVisiblityType {public,private}
-    TransactionAccountType ({credit, debit}
+    TransactionAccountType {credit, debit}
     ```
 
   <a name="naming-procs"></a><a name="1.5"></a>
@@ -84,14 +84,14 @@
     
     // good
     ClientUpdate
-	ClientDelete
+    ClientDelete
     ClientGetUpdateDate 
     ClientGetName
-	ClientSetUpdateDate
-	ClientSetName
-	ClientLoad
-	DocumentRecalculate
-	```
+    ClientSetUpdateDate
+    ClientSetName
+    ClientLoad
+    DocumentRecalculate
+    ```
 
   <a name="naming-gik"></a><a name="1.6"></a>
   - [1.6](#naming-gik) Use [GIK nomenclature](http://wiki.genexus.com/commwiki/servlet/wiki?1872,GIK) to name attributes. The use of 3 characters for the entity is recommendend when the names cannot exceed 20 characters and it has a clear and shared meaning.

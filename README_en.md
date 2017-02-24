@@ -19,7 +19,7 @@
 ## Naming
 
   <a name="naming--descriptive"></a><a name="1.1"></a>
-  - [1.1](#naming--descriptive) Names should be descriptive
+  - [1.1](#naming--descriptive) Names must be descriptive
 	> The goal is to name stuff in a descriptive way
 	
     ```javascript
@@ -56,7 +56,7 @@
     ```
 
   <a name="naming-enums"></a><a name="1.4"></a>
-  - [1.4](#naming-enums) Enumerated domain names should start with the entity and then the type without abreviations. When defining a type we should be specific about the type of what. 
+  - [1.4](#naming-enums) Enumerated domain names must start with the entity and then the type without abreviations. When defining a type we should be specific about the type of what. 
 	> This facilitates the definition of attributes and variables based on the domain (GeneXus will do it automatically). Also it makes it easier to reuse the domain - i.e. it's not just a Document-Type is the visibility-type of the document and other things might have the same visibility types.
    
 
@@ -72,7 +72,7 @@
     ```
 
   <a name="naming-procs"></a><a name="1.5"></a>
-  - [1.5](#naming-procs) Name related procedures as Entity + Action + Attribute (depending on the case) + Complement. 
+  - [1.5](#naming-procs) Name related procedures as Entity + Attribute (depending on the case) + Action  + Complement. 
 	> This facilitates the selection of objects that deal with the same entity
 	> Typical actions are Get, Set, Load (for an SDT), Insert, Update, Delete, etc. The difference between Set and Update is that Set refers to one attribute while Update refers to the entity 
 	
@@ -83,14 +83,14 @@
     DateClient
     
     // good
-    ClientUpdate
-    ClientDelete
-    ClientGetUpdateDate 
-    ClientGetName
-    ClientSetUpdateDate
-    ClientSetName
-    ClientLoad
-    DocumentRecalculate
+    ClientUpsert
+	ClientDelete
+    ClientUpdateDateGet
+    ClientUpdateDateSet
+    ClientNameGet
+	ClientNameSet
+	ClientLoad
+	DocumentRecalculate
     ```
 
   <a name="naming-gik"></a><a name="1.6"></a>

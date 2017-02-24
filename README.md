@@ -56,17 +56,17 @@
     ```
 
   <a name="naming-enums"></a><a name="1.4"></a>
-  - [1.4](#naming-enums) Nombrar los dominios enumerados comenzando con la entidad en singular y siguiendo con el enumerado en plural sin abreviar estos.
+  - [1.4](#naming-enums) Nombrar los dominios enumerados sin abreviar, comenzando con la entidad en singular y siguiendo con el calificador enumerado también en singular. Los valores enumerados también se deben especificar en singular.
 
     ```javascript
     // mal
-    DocumentoTipo
+    DocumentosTipo
     DocumentosTipos
     DocTipos
     
     // bien
-    DocumentoTipos (Venta,Compra,etc)
-    DocumentoModos (Credito, Débito)
+    DocumentoTipo (Venta,Compra,etc)
+    DocumentoModo (Credito, Débito)
     ```
 
   <a name="naming-procs"></a><a name="1.5"></a>

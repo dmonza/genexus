@@ -587,4 +587,4 @@ basado en [la guia de Javascript de AirBNB](http://airbnb.io/javascript/)
 
 ## Modificaciones al documento
 
-Recomendamos que ralice un fork de está guía y realice modificaciones y cambie las reglas para que se adecuén a su equipo ó empresa. A continuación puede agregar modificaciones a la guía de estilos. Esto le permite actualizar periódicamente el docuemnto sin lidiar con problemas de merge.
+Recomendamos que ralice un fork de está guía, realice modificaciones y/o cambie las reglas para que se adecuén a su equipo de trabajo ó empresa. A continuación puede agregar modificaciones a la guía de estilos. Esto le permite actualizar periódicamente el docuemnto sin lidiar con problemas de merge.

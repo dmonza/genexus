@@ -12,9 +12,10 @@
   1. [Parameters](#parameters)
   1. [Resources](#resources)
   1. [Companies that use this guide](#companies-that-use-this-guide)
-  2. [Translation](#translation)
+  1. [Translation](#translation)
   1. [Colaboradorators](#colaboradorators)
   1. [License](#license)
+  1. [Amendments](#amendments)
 
 ## Naming
 
@@ -56,7 +57,7 @@
     ```
 
   <a name="naming-enums"></a><a name="1.4"></a>
-  - [1.4](#naming-enums) Enumerated domain names must start with the entity and then the type without abreviations. When defining a type we should be specific about the type of what. 
+  - [1.4](#naming-enums) Enumerated domain names must start with the entity and then the type without abreviations, both in singular way. When defining a type we should be specific about the type of what. 
 	> This facilitates the definition of attributes and variables based on the domain (GeneXus will do it automatically). Also it makes it easier to reuse the domain - i.e. it's not just a Document-Type is the visibility-type of the document and other things might have the same visibility types.
    
 
@@ -73,8 +74,8 @@
 
   <a name="naming-procs"></a><a name="1.5"></a>
   - [1.5](#naming-procs) Name related procedures as Entity + Attribute (depending on the case) + Action  + Complement. 
-	> This facilitates the selection of objects that deal with the same entity
-	> Typical actions are Get, Set, Load (for an SDT), Insert, Update, Delete, etc. The difference between Set and Update is that Set refers to one attribute while Update refers to the entity 
+	> This facilitates the selection of objects that deal with the same entity.
+	Typical actions are Get, Set, Load (for an SDT), Insert, Update, Delete, etc. The difference between Set and Update is that Set refers to one attribute while Update refers to the entity 
 	
     ```javascript
     // bad
@@ -128,7 +129,7 @@
 ## Indent and Spacing
   <a name="whitespace-tab"></a><a name="2.1"></a>
   - [2.1](#whitespace-tab) Use tabs (tab) instead of "spaces". This way each developer can visualize the space as they prefer since the number of characters in a tab can be configured in GeneXus preferences.
-    > Indent faciliates reading the source code, so if we follow a standard indentation it will make it easier for other developers to follow and understand the code 
+    > Indent faciliates reading the source code, so if we follow a standard indentation it will make it easier for other developers to follow and understand the code.
 
 	 ```javascript
     // bad
@@ -209,7 +210,7 @@
 	```
     
   <a name="whitespace-parms"></a><a name="2.4"></a>
-  - [2.4](#whitespace-parms) Leave a space before each parm or a line feed
+  - [2.4](#whitespace-parms) Leave a space before each parm.
 
 	> It makes the parm sentence more readable
 
@@ -220,9 +221,6 @@
     // good
     parm( in:ClientId, out:&ClientName);
 	
-	parm( 	in:ClientId,
-			out:&ClientName);
-
     // bad
     &Date = ymdtod(2017,01,01)
 
@@ -380,7 +378,7 @@
        &ClientBC.Save()
     endsub
     ```
-
+  <a name="comments--spaces"></a><a name="6.3"></a>
   - [6.3](#comments--spaces) Start comments with a space to increase readibility.
 
     ```javascript
@@ -489,7 +487,7 @@
           do 'Something entirely different'
 	endcase
     
-	// also good - When there are many cases and the action is a one-line piece of code. This is used sometimes to handle toolbar actions
+	// also good - When there are many cases and the action is a one-line piece of code.
 	>This facilitates read all the options without having to scroll 
     do case
        case &Action = Action.Update		do 'DoUpdate'
@@ -582,8 +580,6 @@ This style guide is also available in other languages:
 
 ## Colaboradorators
 
-You are welcome to collaborate.
-
   - [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
   - [Laura Aguiar](https://uy.linkedin.com/in/laura-aguiar-396aa56)
 
@@ -593,3 +589,7 @@ You are welcome to collaborate.
 based on [AirBNB Javascript guide](http://airbnb.io/javascript/)
 
 **[Back to Top](#table-of-contents)**
+
+## Amendments
+
+We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.

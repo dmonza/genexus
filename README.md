@@ -15,6 +15,7 @@
   1. [Traducciones](#traducciones)
   1. [Colaboradores](#colaboradores)
   1. [Licencia](#licencia)
+  1. [Modificaciones al documento](#modificaciones-al-documento)
 
 ## Definición de nombres
 
@@ -57,6 +58,7 @@
 
   <a name="naming-enums"></a><a name="1.4"></a>
   - [1.4](#naming-enums) Nombrar los dominios enumerados sin abreviar, comenzando con la entidad en singular y siguiendo con el calificador enumerado también en singular. Los valores enumerados también se deben especificar en singular.
+	> Esto es para facilitar la definición de atributos y variables basadas en un dominio (GeneXus lo hará automáticamente).
 
     ```javascript
     // mal
@@ -65,13 +67,13 @@
     DocTipos
     
     // bien
-    DocumentoTipo (Venta,Compra,etc)
-    DocumentoModo (Credito, Débito)
+    DocumentoTipo {Venta,Compra,etc}
+    DocumentoModo {Credito, Débito}
     ```
 
   <a name="naming-procs"></a><a name="1.5"></a>
   - [1.5](#naming-procs) Nombrar procedimientos relacionados mediante Entidad + Atributo(depende el caso) + Complemento + Acción.
-	> Esto permite agrupar los objetos de la misma entidad en la selección de objetos entre otros.
+	> Esto permite agrupar los objetos de la misma entidad en la selección de objetos entre otros. Algunas acciones típicas son Get, Set, Load (para SDT), Insert, Utpdate, Delete, etc. La diferencia entre Set y Update es que Set refiere a un atributo y Update a una entidad.
 	
     ```javascript
     // mal
@@ -241,7 +243,7 @@
 
 ## Structured Data Types
   <a name="sdt-use"></a><a name="4.1"></a>
-  - [4.1](#sdt-use) Utilizar New() en la creación de SDT en lugar de Clone().
+  - [4.1](#sdt-use) Utilizar New() en la creación de SDT en lugar de Clone(). Incluso antes de utilizar el SDT por primera vez en lugar de al final (aunque GeneXus lo soporte).
     > Queda claro que se está trabajando con un nuevo item.
 
     ```javascript
@@ -371,7 +373,7 @@
        &ClienteBC.Save()
     endsub
     ```
-
+  <a name="comments--spaces"></a><a name="6.3"></a>
   - [6.3](#comments--spaces) Comenzar todos los comentarios con un espacio para que sean sencillos de leer.
 
     ```javascript
@@ -423,7 +425,7 @@
 ## Comandos y funciones
 
   <a name="commands--naming"></a><a name="7.1"></a>
-  - [7.1](#commands--naming) Utilizar minúsculas al nombrar comandos.
+  - [7.1](#commands--naming) Utilizar minúsculas al nombrar comandos y funciones del sistema.
 	> Esto optimiza el desarrollo ya que los comandos y funciones provistas por el lenguaje se utilizan tan frecuentemente y no es necesario especificarlos en PascalCase.
 
     ```javascript
@@ -479,6 +481,18 @@
        otherwise
           ...
 	endcase
+        
+    // también está bien - Cuando existen multiples case y la acción es de una sola línea.
+	>This facilitates read all the options without having to scroll 
+    do case
+       case &Action = Action.Update		do 'DoUpdate'
+       case &Action = Action.Insert		do 'DoInsert'
+       case &Action = Action.Regenerate	do 'DoRegenerate'
+       case &Action = Action.Clean		do 'DoClean'
+       case &Action = Action.Refresh	do 'DoRefresh'
+       case &Action = Action.Reload		do 'DoReload'
+       otherwise						do 'UnexpectedAction'
+	endcase
     ```
 
   <a name="commands--foreach-where"></a><a name="7.3"></a>
@@ -501,7 +515,7 @@
     ```
 
   <a name="commands--foreach-when"></a><a name="7.4"></a>
-  - [7.4](#commands--foreach-when) Utilizar when en comandos [for each](http://wiki.genexus.com/commwiki/servlet/wiki?24744,For%20Each%20command) para simplificar la query enviada al DBMS.
+  - [7.4](#commands--foreach-when) Utilizar "when" en comandos [for each](http://wiki.genexus.com/commwiki/servlet/wiki?24744,For%20Each%20command) para simplificar la query enviada al DBMS.
 
     ```javascript
     // mal
@@ -561,8 +575,6 @@ Esta guia de estilo se encuentra también en los siguientes lenguajes:
 
 ## Colaboradores
 
-El proyecto está abierto a todo el que quiera colaborar.
-
   - [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
   - [Laura Aguiar](https://uy.linkedin.com/in/laura-aguiar-396aa56)
 
@@ -572,3 +584,7 @@ El proyecto está abierto a todo el que quiera colaborar.
 basado en [la guia de Javascript de AirBNB](http://airbnb.io/javascript/)
 
 **[Volver al inicio](#tabla-de-contenidos)**
+
+## Modificaciones al documento
+
+Recomendamos que ralice un fork de está guía y realice modificaciones y cambie las reglas para que se adecuén a su equipo ó empresa. A continuación puede agregar modificaciones a la guía de estilos. Esto le permite actualizar periódicamente el docuemnto sin lidiar con problemas de merge.

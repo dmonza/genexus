@@ -1,4 +1,5 @@
 # Style Guide for GeneXus Development
+by [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
 
 ## Table of Contents
 
@@ -580,7 +581,6 @@ This style guide is also available in other languages:
 
 ## Colaboradorators
 
-  - [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
   - [Laura Aguiar](https://uy.linkedin.com/in/laura-aguiar-396aa56)
 
 ## License

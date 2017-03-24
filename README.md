@@ -1,4 +1,5 @@
 # Sincrum - Guia de estilo para el desarrollo en GeneXus
+por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
 
 ## Tabla de Contenidos
 
@@ -575,7 +576,6 @@ Esta guia de estilo se encuentra también en los siguientes lenguajes:
 
 ## Colaboradores
 
-  - [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
   - [Laura Aguiar](https://uy.linkedin.com/in/laura-aguiar-396aa56)
 
 ## Licencia

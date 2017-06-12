@@ -53,7 +53,7 @@ Para ello, accedemos a nuestro sitio dentro del IIS e ingresamos al módulo "HTT
 Name : Strict-Transport-Security
 Value: max-age=10886400; includeSubDomains; preload
 
-[Imagen]
+![IIS Features](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/hsts.png)
 
 ### Aislamiento del exterior
 Corroborar que nuestro sitio sea únicametne accesible por los puertos TCP 80 y TCP 443 desde el exterior.
@@ -81,6 +81,13 @@ https://www.genexus.com/developers/websac?en,,,29874;;
 https://www.genexus.com/developers/websac?en,,,29369;;
 
 ### Configurar Servidor de Sesiones
+
+1. Configurar "Session State" según las imágenes siguientes:
+
+![IIS Features](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/sessionstate.png)
+![Timeout](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/sessionstate2.png)
+
+2. Luego se debe iniciar y dejar automático el servicio "ASP.NET State Service".
 
 
 ### Definir página por defecto

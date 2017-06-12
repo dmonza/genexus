@@ -98,6 +98,6 @@ Luego en IIS, dentro de nuestro sitio, en el módulo "Default Document", agregam
 
 Lo mejor es que solo quede éste, de forma que no haya posibilidad que quede otro panel por defecto, ya sea por un descuido o intrusión.
 
-![Default Page](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/default_document.png)
+![Default Page](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/default_document.PNG)
 
 **[Volver al inicio](#tabla-de-contenidos)**

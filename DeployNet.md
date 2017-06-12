@@ -27,6 +27,7 @@ Es utilizado por GeneXus para enviar WebNotifications.
 El módulo rewrite tiene varios usos, entre ellos sirve para publicar servicios rest en GeneXus.
 
 Para ello, primero se debe instalar Microsoft Web Platform Installer:
+
 https://www.microsoft.com/web/downloads/platform.aspx
 
 ### Crear la carpeta donde se publicará la aplicación
@@ -35,6 +36,7 @@ Para ello, siempre nos conviene crear una carpeta donde estarán todas nuestras 
 
 ### Crear sitio en IIS
 
+![New Site](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/newsite.png)
 
 ### Activar autenticación mediante Application Pool
 
@@ -43,6 +45,12 @@ Dentro del sitio creado en IIS accedemos a "Authentication\Anonymous Authenticat
 ![Auth](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/authentication.PNG)
 
 Luego creamos la carpeta de nuestra app, ej.: c:\Sites\MyApp
+
+### Permisos de acceso para el usuario del application pool
+
+El usuario se valida según: IIS AppPool\[nombre de application pool]
+
+![Permisos](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/grants.png)
 
 ### Agregar HSTS Header
 
@@ -67,6 +75,7 @@ Tener en cuenta si accedemos al servidor por RDP, filtrar el acceso para que sol
 ### Configurar encripción de parámetros
 
 Para configurar ésta propiedad, revisar la siguiente url:
+
 https://wiki.genexus.com/commwiki/servlet/wiki?8068,Encrypt%20URL%20Parameters%20property
 
 ### Cambiar clave de encripción por defecto
@@ -78,6 +87,7 @@ En GeneXus 15 esto se puede hacer directamente desde la opción Deploy.
 Aquí dejo los links para hacerlo en versiones anteriores a GeneXus 15.
 
 https://www.genexus.com/developers/websac?en,,,29874;;
+
 https://www.genexus.com/developers/websac?en,,,29369;;
 
 ### Configurar Servidor de Sesiones

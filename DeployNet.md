@@ -18,7 +18,7 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
 
 ### Instalar Asp.Net 4.0 o superior y WebSockets
 
-![IIS Features](features.png)
+![IIS Features](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/features.png)
 
 Es utilizado por GeneXus para enviar WebNotifications.
 
@@ -32,6 +32,15 @@ https://www.microsoft.com/web/downloads/platform.aspx
 ### Crear la carpeta donde se publicará la aplicación
 
 Para ello, siempre nos conviene crear una carpeta donde estarán todas nuestras aplicaciones, Ej.: C:\Sites
+
+### Crear sitio en IIS
+
+
+### Activar autenticación mediante Application Pool
+
+Dentro del sitio creado en IIS accedemos a "Authentication\Anonymous Authentication":
+
+![Auth](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/authentication.PNG)
 
 Luego creamos la carpeta de nuestra app, ej.: c:\Sites\MyApp
 
@@ -81,5 +90,7 @@ Como GeneXus generea la aplicación Asp.Net de forma compilada (con dll's), es n
 Luego en IIS, dentro de nuestro sitio, en el módulo "Default Document", agregamos el hombre de nuestro panel por defecto "home.aspx".
 
 Lo mejor es que solo quede éste, de forma que no haya posibilidad que quede otro panel por defecto, ya sea por un descuido o intrusión.
+
+![Default Page](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/default_document.png)
 
 **[Volver al inicio](#tabla-de-contenidos)**

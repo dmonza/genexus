@@ -649,11 +649,11 @@ La presente guía se realizó buscando los siguientes objetivos:
   Para lograr esto, se crea un procedimiento que retorna la versión en que estamos trabajando:
 
     ```javascript
-	 // Parameters
-	 parm( out:&Version)
-	 
-	 // Source
-	 &Version = !"1.05.06"
+	// Parameters
+	parm( out:&Version)
+	
+	// Source
+	&Version = !"1.05.06"
     ```
 
 	La versión se puede guardar también como un parámtetro dentro de la base de datos, para poder obtener la diferencia con la versión de los binarios y así realizar la acción deseada.

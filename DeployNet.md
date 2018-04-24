@@ -59,16 +59,12 @@ Si queremos que nuestro sitio sea accedido solo bajo HTTPS, es encesario definir
 Para ello, accedemos a nuestro sitio dentro del IIS e ingresamos al módulo "HTTP Response Headers" donde agregamos el siguiente encabezado:
 
 Name : Strict-Transport-Security
-<<<<<<< HEAD
 Value: max-age=108000; includeSubDomains; preload
 
 max-age: Tiempo en segundos que el navegador recordará la configuración.
 includeSubDomains: Incluir sub-dominios en la configuración HSTS
 preload: Indica que se agregará el dominio a la lista Chromium, safari e IE para su revisión.
 
-=======
-Value: max-age=10886400; includeSubDomains; preload
->>>>>>> fad2981053abd5fe2e1474ca27f093762754f001
 
 ![IIS Features](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/hsts.png)
 
@@ -119,7 +115,6 @@ Lo mejor es que solo quede éste, de forma que no haya posibilidad que quede otr
 
 ![Default Page](https://raw.githubusercontent.com/sincrum/genexus/master/deploynet/default_document.PNG)
 
-<<<<<<< HEAD
 ## A tener en cuenta
 
 No subir el developer menu.
@@ -131,6 +126,4 @@ Generalmente los webservices no necesitan manejar sesión y si se especifica, se
 
 ### Forticlient vulnerability scan
 
-=======
->>>>>>> fad2981053abd5fe2e1474ca27f093762754f001
 **[Volver al inicio](#tabla-de-contenidos)**

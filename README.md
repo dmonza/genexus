@@ -606,7 +606,6 @@ La presente guía se realizó buscando los siguientes objetivos:
 
     // bien
 	&Num = &NumChar.ToNumeric()
-
     ```
 
 **[Volver al inicio](#tabla-de-contenidos)**
@@ -615,7 +614,7 @@ La presente guía se realizó buscando los siguientes objetivos:
 
   <a name="parms--sdt"></a><a name="8.1"></a>
   - [8.1](#parms--sdt) Utilizar SDT en lugar de multiples parámetros.
-  > Esto es importante en los casos de objetos con varios parámtros in o out, ya que la lectura queda confusa y si hay que modificar parámetros, se deberá revisar todos los llamadores. Si hay varios parámetros de salida, se debrán crear SDT por separado, tanto para entrada como para salida.
+	> Esto es importante en los casos de objetos con varios parámtros in o out, ya que la lectura queda confusa y si hay que modificar parámetros, se deberá revisar todos los llamadores. Si hay varios parámetros de salida, se debrán crear SDT por separado, tanto para entrada como para salida.
 
     ```javascript
 	 // mal
@@ -638,23 +637,23 @@ La presente guía se realizó buscando los siguientes objetivos:
 
   <a name="bpractices--ver"></a><a name="9.1"></a>
   - [9.1](#bpractices--ver) Versionar el sistema según xx.yy.zz.
-  > Donde:
+	> Donde:
   xx: Cambios mayor de versión del sistema. Cambia con una frecuencia no menor a un año y generalmente implica un cambio mayor en el sistema.
   yy: Incorpora cambios en base de datos.
   yy: Incorpora solo cambios en los binarios.
 
   <a name="bpractices--ver"></a><a name="9.2"></a>
   - [9.2](#bpractices--ver) Disponer de la versión actual de la aplicación dentro de los binarios.
-  > Esto permite de forma inequivoca saber en que versión de la aplicación estamos trabajando.
+	> Esto permite de forma inequivoca saber en que versión de la aplicación estamos trabajando.
 
   Para lograr esto, se crea un procedimiento que retorna la versión en que estamos trabajando:
 
     ```javascript
-    // Parameters
-    parm( out:&Version)
-
-    // Source
-    &Version = !"1.05.06"
+	 // Parameters
+	 parm( out:&Version)
+	 
+	 // Source
+	 &Version = !"1.05.06"
     ```
 
 	La versión se puede guardar también como un parámtetro dentro de la base de datos, para poder obtener la diferencia con la versión de los binarios y así realizar la acción deseada.
@@ -667,15 +666,15 @@ La presente guía se realizó buscando los siguientes objetivos:
 
   <a name="bpractices--pass"></a><a name="9.4"></a>
   - [9.4](#bpractices--pass) No mostrar contraseñas en logs e información de debug
-  > Esto obedece a mejorar la seguridad de los sistemas, evitando que queden credenciales en archivos y consolas con sus potenciales riesgos de seguridad
+	> Esto obedece a mejorar la seguridad de los sistemas, evitando que queden credenciales en archivos y consolas con sus potenciales riesgos de seguridad
 
   <a name="bpractices--sdt"></a><a name="9.5"></a>
   - [9.5](#bpractices--sdt) Establecer namespaces específicos en SDTs utilizados en webservices
-  > Esto evita que se generen inconvenientes en producción si el environment cambia de namespace por defecto. Esto se define en la propiedad "name space" del SDT.
+	> Esto evita que se generen inconvenientes en producción si el environment cambia de namespace por defecto. Esto se define en la propiedad "name space" del SDT.
 
   <a name="bpractices--grids"></a><a name="9.6"></a>
   - [9.6](#bpractices--grids) Evitar cargar grillas por defecto
-  > En la mayoría de los casos el usuario va a aplicar algún filtro y al cargar por defecto se desperdician recursos del DBMS.
+	> En la mayoría de los casos el usuario va a aplicar algún filtro y al cargar por defecto se desperdician recursos del DBMS.
 
 ## Recursos
 

@@ -644,7 +644,7 @@ La presente guía se realizó buscando los siguientes objetivos:
 
   <a name="bpractices--ver"></a><a name="9.2"></a>
   - [9.2](#bpractices--ver) Disponer de la versión actual de la aplicación dentro de los binarios.
-	> Esto permite de forma inequivoca saber en que versión de la aplicación estamos trabajando.
+	> Esto permite de forma inequivoca saber en que versión de la aplicación estamos trabajando. La versión se puede guardar también como un parámtetro dentro de la base de datos, para poder obtener la diferencia con la versión de los binarios y así realizar la acción deseada.
 
   Para lograr esto, se crea un procedimiento que retorna la versión en que estamos trabajando:
 
@@ -655,8 +655,6 @@ La presente guía se realizó buscando los siguientes objetivos:
 	// Source
 	&Version = !"1.05.06"
    ```
-
-	La versión se puede guardar también como un parámtetro dentro de la base de datos, para poder obtener la diferencia con la versión de los binarios y así realizar la acción deseada.
 
   <a name="bpractices--defpro"></a><a name="9.3"></a>
   - [9.3](#bpractices--defpro) Propiedades por defecto

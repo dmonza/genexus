@@ -1,6 +1,15 @@
 # Sincrum - Guia de estilo para el desarrollo en GeneXus
 por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
 
+Por correcciones o mejoras, pueden utilizar los [issues de github](https://github.com/sincrum/genexus/issues) o enviarlas por email a [info@sincrum.com](mailto:info@sincrum.com).
+
+## Objetivos
+La presente guía se realizó buscando los siguientes objetivos:
+
+  1. Transmitir las mejores prácticas a la hora de desarrollar en GeneXus.
+  1. Estandarizar el código escrito. Ya que hay tantas formas de programar como programador, se intenta simplificar la lectura del código fuente.
+  1. Dibulgar buenas prácticas de codificación y las novedades del lenguaje.
+
 ## Tabla de Contenidos
 
   1. [Definición de nombres](#definición-de-nombres)
@@ -11,10 +20,10 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
   1. [Comentarios](#comentarios)
   1. [Comandos y funciones](#comandos-y-funciones)
   1. [Parámetros](#parámetros)
+  1. [Buenas prácticas](#buenas-prácticas)
   1. [Recursos](#recursos)
   1. [Empresas que utilizan esta guia](#empresas-que-utilizan-esta-guia)
   1. [Traducciones](#traducciones)
-  1. [Colaboradores](#colaboradores)
   1. [Licencia](#licencia)
   1. [Modificaciones al documento](#modificaciones-al-documento)
 
@@ -23,7 +32,7 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
   <a name="naming--descriptive"></a><a name="1.1"></a>
   - [1.1](#naming--descriptive) Se debe ser descriptivo con los nombres.
 	> Se intenta que el nombre sea autodescriptivo.
-	
+
     ```javascript
     // mal
     Proc: CliCre
@@ -44,7 +53,7 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
     ```
 
   <a name="naming--leading-underscore"></a><a name="1.3"></a>
-  - [1.3](#naming--leading-underscore) No utilizar underscore al inicio o final en ningún tipo de objeto, atributo o variable. 
+  - [1.3](#naming--leading-underscore) No utilizar underscore al inicio o final en ningún tipo de objeto, atributo o variable.
     > Esto puede hacer suponer a un programador proveniente de otros lenguajes que tiene algún significado de privacidad.
 
     ```javascript
@@ -66,7 +75,7 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
     DocumentosTipo
     DocumentosTipos
     DocTipos
-    
+
     // bien
     DocumentoTipo {Venta,Compra,etc}
     DocumentoModo {Credito, Débito}
@@ -75,13 +84,13 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
   <a name="naming-procs"></a><a name="1.5"></a>
   - [1.5](#naming-procs) Nombrar procedimientos relacionados mediante Entidad + Atributo(depende el caso) + Complemento + Acción.
 	> Esto permite agrupar los objetos de la misma entidad en la selección de objetos entre otros. Algunas acciones típicas son Get, Set, Load (para SDT), Insert, Utpdate, Delete, etc. La diferencia entre Set y Update es que Set refiere a un atributo y Update a una entidad.
-	
+
     ```javascript
     // mal
     CreCli
     UpsertCliente
     FechaCliente
-    
+
     // bien
     ClienteUpsert
 	ClienteEliminar
@@ -93,15 +102,15 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
   <a name="naming-gik"></a><a name="1.6"></a>
   - [1.6](#naming-gik) Utilizar [nomenclatura GIK](http://wiki.genexus.com/commwiki/servlet/wiki?1872,GIK) para nombrar atributos. Se pueden crear atributos sin el límite de los 3 caracteres si el nombre no supera los 20 caracteres y mejora la comprensión.
 	> Estandard desde los inicios de GeneXus.
-	
+
     ```javascript
     // mal
     CreCliFch
     FechaCreadoCliente
-    
+
     // bien
     CliFchCre
-    
+
     // mejor
 	ClienteFechaCreado
 	```
@@ -109,12 +118,12 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
   <a name="naming-trns"></a><a name="1.7"></a>
   - [1.7](#naming-trns) Las transacciones deben tener el nombre de la entidad en singular.
 	> Se define así porque en la comunidad GeneXus está claro que queda mejor a la hora de trabaja por ejmeplo con [Business Component](http://wiki.genexus.com/commwiki/servlet/wiki?5846,Toc%3ABusiness+Component). También es requerimiento de algunos patterns GeneXus para su correcta visualización (ej.: K2BTools).
-	
+
     ```javascript
     // mal
     Trn:Articulos
     Trn:Clientes
-    
+
     // bien
     Trn:Cliente
     Trn:Articulo
@@ -189,7 +198,7 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
     // bien
     for each
        where DocumentoTipo = DocumentoTipos.Venta
-	   
+
        if DocTot > LimCreMto
           ...
        endif
@@ -198,13 +207,13 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
     // bien
     for each
        defined by ClienteNombre
-       
+
        for each Documentos
           ...
        endfor
     endfor
 	```
-    
+
   <a name="whitespace-parms"></a><a name="2.4"></a>
   - [2.4](#whitespace-parms) Dejar un espacio antes de cada parámetro.
 
@@ -234,11 +243,25 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
     ```javascript
     // mal
     if &HttpResponse = "GET"
-    
+
     // bien
     // Crear un dominio enumerado HTTPMethods con los posibles valores ( POST, GET)
     if &HttpResponse = HTTPMethods.Get
     ```
+
+  <a name="enums-use"></a><a name="3.1"></a>
+  - [3.2](#enums-datatype) Los dominios enumerados cuyo valor quedará registrado en la base de datos, deberán ser de tipo CHAR.
+      > Es para facilitar la lectura de las consultas realizadas directamente a la base de datos por el usuario. Es preferible que se utilice CHAR(2 a 3) para optimizar búsqueda mediante índices pequeños.
+
+	```javascript
+	// mal
+	MovimientoCuenta.Credito 1
+	MovimientoCuenta.Debito  2
+
+	// bien
+	MovimientoCuenta.Credito "CRE"
+	MovimientoCuenta.Debito  "DEB"
+	```
 
 **[Volver al inicio](#tabla-de-contenidos)**
 
@@ -250,13 +273,13 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
     ```javascript
     // &Cliente SDT:Cliente
     // &Clientes lista de SDT:Cliente
-    
+
     // mal
     for each Clientes
        &Cliente.CliNom = CliNom
        &Clientes.Add( &Cliente.Clone() )
     endfor
-    
+
     // bien
     for each Clientes
        &Cliente = new()
@@ -273,7 +296,7 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
     SDT:Clientes : Lista
     	ClienteItem
         	CliNom
-    
+
     // bien
     SDT:Cliente
        	CliNom
@@ -284,16 +307,39 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
 ## Strings
 
   <a name="strings-format"></a><a name="5.1"></a>
-  - [5.1](#strings-format) Utilizar [format](http://wiki.genexus.com/commwiki/servlet/wiki?8406,Format%20function) para desplegar mensajes conteniendo datos.
+  - [5.1](#strings-format) Utilizar [format](http://wiki.genexus.com/commwiki/servlet/wiki?8406,Format%20function) para desplegar mensajes conteniendo datos y en llamadas a funciones javascript.
     > Si la aplicación se va a traducir en diferentes lenguajes no hay que re-programar los mensajes.
 
     ```javascript
     // mal
     &Msg = "El cliente Nro." + &CliId.ToString() + " se llama " + &CliNom
-    
+
     // bien
     &Msg = format( "El cliente Nro. %1 se llama %2", &CliId.ToString(), &CliNom)
     ```
+
+	Esto soluciona la traducción según contexto. Por ejemplo,
+
+	```
+	ingles: "The name of John's dog is Gandalf"
+
+	español: "El nombre del perro de John es Gandalf"
+	```
+
+	Lo anterior realizado mediante concatenación no quedaría correctamnete traducido.
+
+	En el siguiente caso, podemos ver como podemos dejar para traducir solo el texto dentro de un método jsevent.
+
+	```javascript
+	// mal
+	&Msg = "confirm('¿Está seguro de agregar excepción?')"
+    &LstExc.JSEvent("onclick", &Msg)
+
+	// bien
+	&Msg = format( !"confirm('%1')", "¿Está seguro de agregar excepción?" )
+    &LstExc.JSEvent("onclick", &Msg)
+
+	```
 
   <a name="strings-trans"></a><a name="5.2"></a>
   - [5.2](#strings-trans) Utilizar !"" para strings que no deben ser traducidos.
@@ -302,9 +348,20 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
     ```javascript
     // mal
     &ParVal = ParamGet( "GLOBAL ENCRYPT KEY")
-    
+
     // bien
     &ParVal = ParamGet( !"GLOBAL ENCRYPT KEY")
+    ```
+  <a name="strings-quotation"></a><a name="5.3"></a>
+  - [5.3](#strings-trans) Utilizar comilla doble por defecto.
+    > Estandarización de código para facilitar la lectura.
+
+	 ```javascript
+    // mal
+    &Msg = 'Hola mundo!'
+
+    // bien
+    &Msg = "Hola mundo!"
     ```
 
 **[Volver al inicio](#tabla-de-contenidos)**
@@ -313,7 +370,7 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
 
   <a name="comments--multiline"></a><a name="6.1"></a>
   - [6.1](#comments--multiline) Utilizar `/** ... */` para comentarios multi-línea.
-	
+
     ```javascript
     // mal
     // CrearCliente crea una nuevo cliente
@@ -323,7 +380,7 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
     sub 'CrearCliente'
       // ...
     endsub
-	
+
     // bien
     /**
      * CrearCliente crea una nuevo cliente
@@ -359,7 +416,7 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
     // bien
     sub 'CrearCliente'
        msg( "Creando cliente", status )
-		
+
        // Se crea el cliente
        &ClienteBC = new()
        &ClienteBC.CliNom = "John Doe"
@@ -441,7 +498,7 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
        where CliCod = &CliCod
        msg(CliNom)
     endfor
-    
+
     // mal
     &Fecha = YmdToD( 2017, 01, 01)
 
@@ -461,38 +518,38 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
           ...
        endif
 	endif
-    
+
     // también mal
     do case
        case &DocTipo = DocumentoTipos.Venta
           ...
        case &DocTipo = DocumentoTipos.Compra
           ...
-          
+
 	endcase
-    
+
     // bien
     do case
        case &DocTipo = DocumentoTipos.Venta
           ...
-       
+
        case &DocTipo = DocumentoTipos.Compra
           ...
-       
+
        otherwise
           ...
 	endcase
-        
+
     // también está bien - Cuando existen multiples case y la acción es de una sola línea.
-	>This facilitates read all the options without having to scroll 
+	> Esto facilita leer todas las opciones sin necesidad de scroll
     do case
-       case &Action = Action.Update		do 'DoUpdate'
-       case &Action = Action.Insert		do 'DoInsert'
-       case &Action = Action.Regenerate	do 'DoRegenerate'
-       case &Action = Action.Clean		do 'DoClean'
-       case &Action = Action.Refresh	do 'DoRefresh'
-       case &Action = Action.Reload		do 'DoReload'
-       otherwise						do 'UnexpectedAction'
+       case &Action = Action.Update      do 'DoUpdate'
+       case &Action = Action.Insert      do 'DoInsert'
+       case &Action = Action.Regenerate  do 'DoRegenerate'
+       case &Action = Action.Clean       do 'DoClean'
+       case &Action = Action.Refresh     do 'DoRefresh'
+       case &Action = Action.Reload      do 'DoReload'
+       otherwise	do 'UnexpectedAction'
 	endcase
     ```
 
@@ -507,7 +564,7 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
           ...
        endif
     endfor
-    
+
     // bien
     for each
        where DocTipo = DocumentoTipos.Ventas
@@ -525,7 +582,7 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
        where DocFch >= &FchIni or null(&FchIni)
        ...
     endfor
-    
+
     // bien
     for each
        where DocTipo = DocumentoTipos.Ventas
@@ -533,34 +590,105 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
        ...
     endfor
     ```
-    
+
+  <a name="commands--foreach-when"></a><a name="7.5"></a>
+  - [7.4](#commands--syntax) Utilizar la última sintaxis siempre que la versión lo soporte.
+
+    ```javascript
+    // mal
+	&Name = udp( PNameGet, 1)
+
+    // bien
+	&Name = PNameGet.Udp( 1 )
+
+    // mal
+	&Num = val( &NumChar )
+
+    // bien
+	&Num = &NumChar.ToNumeric()
+
+    ```
+
 **[Volver al inicio](#tabla-de-contenidos)**
 
 ## Parámetros
 
   <a name="parms--sdt"></a><a name="8.1"></a>
   - [8.1](#parms--sdt) Utilizar SDT en lugar de multiples parámetros.
-  > La lectura queda confusa y cuando se modifican los parámetros hay que revisar todos los llamadores. Esto algunas veces no es posible, por ejemplo en webpanels.
-  
+  > Esto es importante en los casos de objetos con varios parámtros in o out, ya que la lectura queda confusa y si hay que modificar parámetros, se deberá revisar todos los llamadores. Si hay varios parámetros de salida, se debrán crear SDT por separado, tanto para entrada como para salida.
+
     ```javascript
-    // mal
-    parm( in:&CliNom, in:&CliApe, in:&CliTel, in:&CliDir, in:&CliDOB)
-	  
-    // bien
-    parm( in:&sdtCliente )
+	 // mal
+	 parm( in:&CliNom, in:&CliApe, in:&CliTel, in:&CliDir, in:&CliDOB);
+
+	 // bien
+	 parm( in:&sdtCliente );
+
+	 // Ejemplo de un webservice
+	 // mal
+	 parm( in:&Nombre, in:&Edad, in:&EstadoCivil, out:&Id, out:&ErrorId);
+
+	 // bien
+	 parm( in:&PersonCreateRequest, out:&PersonCreateResponse);
     ```
 
 **[Volver al inicio](#tabla-de-contenidos)**
+
+## Buenas prácticas
+
+  <a name="bpractices--ver"></a><a name="9.1"></a>
+  - [9.1](#bpractices--ver) Versionar el sistema según xx.yy.zz.
+  > Donde:
+  xx: Cambios mayor de versión del sistema. Cambia con una frecuencia no menor a un año y generalmente implica un cambio mayor en el sistema.
+  yy: Incorpora cambios en base de datos.
+  yy: Incorpora solo cambios en los binarios.
+
+  <a name="bpractices--ver"></a><a name="9.2"></a>
+  - [9.2](#bpractices--ver) Disponer de la versión actual de la aplicación dentro de los binarios.
+  > Esto permite de forma inequivoca saber en que versión de la aplicación estamos trabajando.
+
+  Para lograr esto, se crea un procedimiento que retorna la versión en que estamos trabajando:
+
+    ```javascript
+    // Parameters
+    parm( out:&Version)
+
+    // Source
+    &Version = !"1.05.06"
+    ```
+
+	La versión se puede guardar también como un parámtetro dentro de la base de datos, para poder obtener la diferencia con la versión de los binarios y así realizar la acción deseada.
+
+  <a name="bpractices--defpro"></a><a name="9.3"></a>
+  - [9.3](#bpractices--defpro) Propiedades por defecto
+
+  Isolation level: Read commited  
+  Generate prompt programs: No
+
+  <a name="bpractices--pass"></a><a name="9.4"></a>
+  - [9.4](#bpractices--pass) No mostrar contraseñas en logs e información de debug
+  > Esto obedece a mejorar la seguridad de los sistemas, evitando que queden credenciales en archivos y consolas con sus potenciales riesgos de seguridad
+
+  <a name="bpractices--sdt"></a><a name="9.5"></a>
+  - [9.5](#bpractices--sdt) Establecer namespaces específicos en SDTs utilizados en webservices
+  > Esto evita que se generen inconvenientes en producción si el environment cambia de namespace por defecto. Esto se define en la propiedad "name space" del SDT.
+
+  <a name="bpractices--grids"></a><a name="9.6"></a>
+  - [9.6](#bpractices--grids) Evitar cargar grillas por defecto
+  > En la mayoría de los casos el usuario va a aplicar algún filtro y al cargar por defecto se desperdician recursos del DBMS.
 
 ## Recursos
 
   - [GeneXus Wiki](http://wiki.genexus.com/) - GeneXus
   - [GeneXus Training](http://training.genexus.com) - GeneXus
   - [GeneXus Developpers](http://developers.genexus.com) - GeneXus
+  - [GeneXus Marketplace](http://marketplace.genexus.com) - GeneXus
+  - [GeneXus Search](http://search.genexus.com/) - GeneXus
+  - [Stackoverflow](https://es.stackoverflow.com/questions/tagged/genexus)
 
 ## Empresas que utilizan esta guia
 
-  Esta es una lista de las empresas que están utilizando esta guia de desarrollo.  This is a list of organizations that are using this style guide. Haganos saber si su empresa utiliza esta guia o un fork de la misma y lo agregaremos.
+  Esta es una lista de las empresas que están utilizando esta guia de desarrollo. Haganos saber si su empresa utiliza esta guía ([info@sincrum.com](mailto:info@sincrum.com)) o un fork de la misma y lo agregaremos.
 
 - [**Sincrum**](http://sincrum.com)
 - [**Tangocode**](http://tangocode.com)
@@ -570,13 +698,9 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
 ## Traducciones
 Esta guia de estilo se encuentra también en los siguientes lenguajes:
 
-  - ![us](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/United-States.png) [**English**](README_en.md) by Lali
+  - ![us](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/United-States.png) [**English**](README_en.md) by [Laura Aguiar](https://uy.linkedin.com/in/laura-aguiar-396aa56)
 
 **[Volver al inicio](#tabla-de-contenidos)**
-
-## Colaboradores
-
-  - [Laura Aguiar](https://uy.linkedin.com/in/laura-aguiar-396aa56)
 
 ## Licencia
 

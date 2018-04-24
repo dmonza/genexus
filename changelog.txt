@@ -1,0 +1,20 @@
+Whishlist
+- Al agregar campos nuevos, asignarles null como default value para no generar una reorg con transferencia de datos
+- Glosario
+
+24/04/2018
+* Mejoras y correcciones varias
+* Recursos: Se incorporan nuevos recursos
+* Best practices: Default Properties (Read commited, No generar prompts)
+* Best practices: SDT de servicios públicos deben tener name space fijo.
+* Conformación de scripts separando el texto:
+	&Msg = format( !"confirm('%1')", "¿Está seguro de agregar excepción?" )
+	&LstExc.JSEvent("onclick", &Msg)
+
+* Strings: Utilizar comilla doble por defecto
+* Best practices: Versionado (Sintaxis de versionado, En binarios)
+	Se puede almacenar también dentro de la base de datos si se quiere hacer algún patch particular cuando se actualiza una versión.
+
+* Comandos: Utilizar Nueva Sintaxis
+
+* Dominios de estados, pueden crearse como char a fín de ser más descriptivos en la DB.

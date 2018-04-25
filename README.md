@@ -638,23 +638,24 @@ La presente guía se realizó buscando los siguientes objetivos:
   <a name="bpractices--ver"></a><a name="9.1"></a>
   - [9.1](#bpractices--ver) Versionar el sistema según xx.yy.zz.
 	> Donde:
-  xx: Cambios mayor de versión del sistema. Cambia con una frecuencia no menor a un año y generalmente implica un cambio mayor en el sistema.
-  yy: Incorpora cambios en base de datos.
-  yy: Incorpora solo cambios en los binarios.
+
+	xx: Cambios mayor de versión del sistema. Cambia con una frecuencia no menor a un año y generalmente implica un cambio mayor en el sistema.
+	yy: Incorpora cambios en base de datos.
+	zz: Incorpora solo cambios en los binarios.
 
   <a name="bpractices--ver"></a><a name="9.2"></a>
   - [9.2](#bpractices--ver) Disponer de la versión actual de la aplicación dentro de los binarios.
 	> Esto permite de forma inequivoca saber en que versión de la aplicación estamos trabajando. La versión se puede guardar también como un parámtetro dentro de la base de datos, para poder obtener la diferencia con la versión de los binarios y así realizar la acción deseada.
 
-  Para lograr esto, se crea un procedimiento que retorna la versión en que estamos trabajando:
+	Para lograr esto, se crea un procedimiento que retorna la versión en que estamos trabajando:
 
-   ```javascript
+	```javascript
 	// Parameters
 	parm( out:&Version)
 
 	// Source
 	&Version = !"1.05.06"
-   ```
+	```
 
   <a name="bpractices--defpro"></a><a name="9.3"></a>
   - [9.3](#bpractices--defpro) Propiedades por defecto

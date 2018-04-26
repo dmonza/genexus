@@ -1,6 +1,8 @@
 # Style Guide for GeneXus Development
 by [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
 
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/)
+
 ## Table of Contents
 
   1. [Naming](#naming)
@@ -585,7 +587,11 @@ This style guide is also available in other languages:
 
 ## License
 
-[Document created by Daniel Monza under MIT licence](LICENSE)
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
+
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](
+http://creativecommons.org/licenses/by-sa/4.0/)
+
 based on [AirBNB Javascript guide](http://airbnb.io/javascript/)
 
 **[Back to Top](#table-of-contents)**

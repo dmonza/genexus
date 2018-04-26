@@ -1,13 +1,15 @@
 # Sincrum - Guia de estilo para el desarrollo en GeneXus
 por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
 
+[![Licencia Creative Commons](https://i.creativecommons.org/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/)
+
 Por correcciones o mejoras, pueden utilizar los [issues de github](https://github.com/sincrum/genexus/issues) o enviarlas por email a [info@sincrum.com](mailto:info@sincrum.com).
 
 ## Objetivos
 La presente guía se realizó buscando los siguientes objetivos:
 
   1. Transmitir las mejores prácticas a la hora de desarrollar en GeneXus.
-  1. Estandarizar el código escrito. Ya que hay tantas formas de programar como programador, se intenta simplificar la lectura del código fuente.
+  1. Estandarizar el código escrito. Ya que hay tantas formas de programar como programadores, se intenta simplificar la lectura del código fuente.
   1. Dibulgar buenas prácticas de codificación y las novedades del lenguaje.
 
 ## Tabla de Contenidos
@@ -637,11 +639,11 @@ La presente guía se realizó buscando los siguientes objetivos:
 
   <a name="bpractices--ver"></a><a name="9.1"></a>
   - [9.1](#bpractices--ver) Versionar el sistema según xx.yy.zz.
-	> Donde:
 
-	xx: Cambios mayor de versión del sistema. Cambia con una frecuencia no menor a un año y generalmente implica un cambio mayor en el sistema.
-	yy: Incorpora cambios en base de datos.
-	zz: Incorpora solo cambios en los binarios.
+  Donde:
+	- xx: Cambios mayor de versión del sistema. Cambia con una frecuencia no menor a un año y generalmente implica un cambio mayor en el  sistema.
+	- yy: Incorpora cambios en base de datos.
+	- zz: Incorpora solo cambios en los binarios.
 
   <a name="bpractices--ver"></a><a name="9.2"></a>
   - [9.2](#bpractices--ver) Disponer de la versión actual de la aplicación dentro de los binarios.
@@ -701,9 +703,11 @@ Esta guia de estilo se encuentra también en los siguientes lenguajes:
 **[Volver al inicio](#tabla-de-contenidos)**
 
 ## Licencia
+[![Licencia Creative Commons](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
-[Documento creado por Daniel Monza bajo licencia MIT](LICENSE)
-basado en [la guia de Javascript de AirBNB](http://airbnb.io/javascript/)
+Esta obra está bajo una Licencia [Creative Commons Atribución-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-sa/4.0/)
+
+Basado en [la guia de Javascript de AirBNB](http://airbnb.io/javascript/)
 
 **[Volver al inicio](#tabla-de-contenidos)**
 

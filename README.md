@@ -145,12 +145,12 @@ La presente guía se realizó buscando los siguientes objetivos:
     endif
 
     // mal
-    if &DocumentoTipo = DocumentoTipos.Venta
+    if &DocumentoTipo = DocumentoTipo.Venta
     		msg("Venta")
     endif
 
     // bien
-    if &DocumentoTipo = DocumentoTipos.Venta
+    if &DocumentoTipo = DocumentoTipo.Venta
        msg("Venta")
     endif
     ```
@@ -161,7 +161,7 @@ La presente guía se realizó buscando los siguientes objetivos:
 	 ```javascript
     // mal
     for each
-    where DocumentoTipo = DocumentoTipos.Venta
+    where DocumentoTipo = DocumentoTipo.Venta
     ...
     endfor
 
@@ -173,7 +173,7 @@ La presente guía se realizó buscando los siguientes objetivos:
 
     // bien
     for each
-       where DocumentoTipo = DocumentoTipos.Venta
+       where DocumentoTipo = DocumentoTipo.Venta
        ...
     endfor
     ```
@@ -183,7 +183,7 @@ La presente guía se realizó buscando los siguientes objetivos:
 	```javascript
     // mal
     for each
-       where DocumentoTipo = DocumentoTipos.Venta
+       where DocumentoTipo = DocumentoTipo.Venta
        if DocTot > LimCreMto
           ...
        endif
@@ -247,8 +247,8 @@ La presente guía se realizó buscando los siguientes objetivos:
     if &HttpResponse = "GET"
 
     // bien
-    // Crear un dominio enumerado HTTPMethods con los posibles valores ( POST, GET)
-    if &HttpResponse = HTTPMethods.Get
+    // Crear un dominio enumerado HTTPMethod con los posibles valores ( POST, GET)
+    if &HttpResponse = HTTPMethod.Get
     ```
 
   <a name="enums-use"></a><a name="3.1"></a>

@@ -598,10 +598,10 @@ La presente guía se realizó buscando los siguientes objetivos:
 
     ```javascript
     // mal
-	&Name = udp( PNameGet, 1)
+	&Name = udp( PNameGet, &Id)
 	
 	// bien
-	&Name = PNameGet( 1 )
+	&Name = PNameGet( &Id )
 	
 	// mal
     call( PNameSet, &Id, &Name)

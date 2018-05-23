@@ -1,6 +1,7 @@
 Whishlist
 - Al agregar campos nuevos, asignarles null como default value para no generar una reorg con transferencia de datos
 - Glosario
+- Intentar no acceder a sesiones desde procedimientos (desde el dominio del problema)
 
 24/04/2018
 * Mejoras y correcciones varias

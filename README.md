@@ -597,16 +597,22 @@ La presente guía se realizó buscando los siguientes objetivos:
   - [7.4](#commands--syntax) Utilizar la última sintaxis siempre que la versión lo soporte.
 
     ```javascript
-    // mal
+   // mal
 	&Name = udp( PNameGet, 1)
 
-    // bien
-	&Name = PNameGet.Udp( 1 )
+   // bien
+	&Name = PNameGet( 1 )
 
-    // mal
+	// mal
+   call( PNameSet, &Id, &Name)
+
+	// bien
+   PNameSet( &Id, &Name )
+
+   // mal
 	&Num = val( &NumChar )
 
-    // bien
+   // bien
 	&Num = &NumChar.ToNumeric()
     ```
 

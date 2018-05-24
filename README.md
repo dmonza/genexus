@@ -698,6 +698,8 @@ La presente guía se realizó buscando los siguientes objetivos:
 
 - [**Sincrum**](http://sincrum.com)
 - [**Tangocode**](http://tangocode.com)
+- [**GeneXus**](https://www.genexus.com)
+- [**TributApp**](https://www.tributapp.com)
 
 **[Volver al inicio](#tabla-de-contenidos)**
 

@@ -662,7 +662,7 @@ La presente guía se realizó buscando los siguientes objetivos:
 ## Subrutinas
 
   <a name="subs--title"></a><a name="9.1"></a>
-  - [9.1](#parms--title) Al definir subrutinas agregar el nombre de la misma como comentario luego del nombre.
+  - [9.1](#parms--title) Al definir subrutinas agregar el nombre como comentario en la misma línea.
   > Con esto logramos ver el nombre de las sub-rutinas al momento de colapsar las mismas.
 
   ```javascript

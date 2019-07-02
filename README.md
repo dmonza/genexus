@@ -79,8 +79,8 @@ La presente guía se realizó buscando los siguientes objetivos:
     DocTipos
 
     // bien
-    DocumentoTipo {Venta,Compra,etc}
-    DocumentoModo {Credito, Débito}
+    DocumentoTipo { Venta, Compra, etc}
+    DocumentoModo { Credito, Débito}
     ```
 
   <a name="naming-procs"></a><a name="1.5"></a>
@@ -114,7 +114,7 @@ La presente guía se realizó buscando los siguientes objetivos:
     CliFchCre
 
     // mejor
-	ClienteFechaCreado
+    ClienteFechaCreado
 	```
 
   <a name="naming-trns"></a><a name="1.7"></a>
@@ -141,17 +141,17 @@ La presente guía se realizó buscando los siguientes objetivos:
 	 ```javascript
     // mal
     if &DocumentoTipo = DocumentoTipos.Venta
-    msg("Venta")
+    msg( "Venta")
     endif
 
     // mal
     if &DocumentoTipo = DocumentoTipo.Venta
-    		msg("Venta")
+    		msg( "Venta")
     endif
 
     // bien
     if &DocumentoTipo = DocumentoTipo.Venta
-       msg("Venta")
+       msg( "Venta")
     endif
     ```
 
@@ -295,14 +295,14 @@ La presente guía se realizó buscando los siguientes objetivos:
     // mal
     for each Clientes
        &Cliente.CliNom = CliNom
-       &Clientes.Add( &Cliente.Clone() )
+       &Clientes.Add( &Cliente.Clone())
     endfor
 
     // bien
     for each Clientes
        &Cliente = new()
        &Cliente.CliNom = CliNom
-       &Clientes.Add( &Cliente )
+       &Clientes.Add( &Cliente)
     endfor
     ```
   <a name="sdt-list"></a><a name="4.1"></a>
@@ -351,11 +351,11 @@ La presente guía se realizó buscando los siguientes objetivos:
 	```javascript
 	// mal
 	&Msg = "confirm('¿Está seguro de agregar excepción?')"
-    &LstExc.JSEvent("onclick", &Msg)
+    &LstExc.JSEvent( "onclick", &Msg)
 
 	// bien
-	&Msg = format( !"confirm('%1')", "¿Está seguro de agregar excepción?" )
-    &LstExc.JSEvent("onclick", &Msg)
+	&Msg = format( !"confirm('%1')", "¿Está seguro de agregar excepción?")
+    &LstExc.JSEvent( "onclick", &Msg)
 
 	```
 
@@ -424,7 +424,7 @@ La presente guía se realizó buscando los siguientes objetivos:
 
     // mal
     sub 'CrearCliente'
-       msg( "Creando cliente", status )
+       msg( "Creando cliente", status)
        // Se crea el cliente
        &ClienteBC = new()
        &ClienteBC.CliNom = "John Doe"
@@ -433,7 +433,7 @@ La presente guía se realizó buscando los siguientes objetivos:
 
     // bien
     sub 'CrearCliente'
-       msg( "Creando cliente", status )
+       msg( "Creando cliente", status)
 
        // Se crea el cliente
        &ClienteBC = new()
@@ -494,7 +494,7 @@ La presente guía se realizó buscando los siguientes objetivos:
     // TODO: Implementar la subrutina
     sub "CrearCliente"
     endsub
-	```
+    ```
 
 **[Volver al inicio](#tabla-de-contenidos)**
 
@@ -508,14 +508,14 @@ La presente guía se realizó buscando los siguientes objetivos:
     // mal
     For Each
        Where CliCod = &CliCod
-       Msg(CliNom)
+       Msg( CliNom)
     EndFor
 
     // bien
     for each
        where CliCod = &CliCod
 
-       msg(CliNom)
+       msg( CliNom)
     endfor
 
     // mal
@@ -625,10 +625,10 @@ La presente guía se realizó buscando los siguientes objetivos:
     call( PNameSet, &Id, &Name)
 	
 	// bien
-    PNameSet( &Id, &Name )
+    PNameSet( &Id, &Name)
 	
 	// mal
-	&Num = val( &NumChar )
+	&Num = val( &NumChar)
 	
 	// bien
 	&Num = &NumChar.ToNumeric()
@@ -647,7 +647,7 @@ La presente guía se realizó buscando los siguientes objetivos:
 	 parm( in:&CliNom, in:&CliApe, in:&CliTel, in:&CliDir, in:&CliDOB);
 
 	 // bien
-	 parm( in:&sdtCliente );
+	 parm( in:&sdtCliente);
 
 	 // Ejemplo de un webservice
 	 // mal
@@ -731,7 +731,12 @@ La presente guía se realizó buscando los siguientes objetivos:
 
 <a name="bpractices--session"></a><a name="10.8"></a>
   - [10.8](#bpractices--null) Evitar acceder a sesiones (websession) desde procedimientos.
-	> El acceso a sesiones debe ser responsabilidad de la interfaz. Al trabajar con sesiones dentro de procedimietos estamos introduciendo lógica de la interfaz en el dominio del problema. Debido a esto, depues podemos tener problemas si deseamos utilizar dichos procedimietnos en ejecuciones por consola batch o win. 
+	> El acceso a sesiones debe ser responsabilidad de la interfaz. Al trabajar con sesiones dentro de procedimietos estamos introduciendo lógica de la interfaz en el dominio del problema. Debido a esto, depues podemos tener problemas si deseamos utilizar dichos procedimietnos en ejecuciones por consola batch o win.
+
+<a name="bpractices--business"></a><a name="10.9"></a>
+  - [10.9](#bpractices--business) No mantener lógica del negocio en la interfaz.
+	> Siguiendo con la idea anterior, se debe evitar incoporar lógica de negocios en la interfaz.
+  El caso más claro en web es generar la exportación a excel y reportes en webpanels. Si en lugar de ello, los encapsulamos en procedimientos, eventualmente los podemos generar desde otras interfaces.
 
 ## Recursos
 

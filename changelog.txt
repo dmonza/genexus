@@ -8,6 +8,7 @@
 * Al agregar campos nuevos, asignarles null como default value para no generar una reorg con transferencia de datos
 * Intentar no acceder a sesiones desde procedimientos (desde el dominio del problema)
 * Enums no deben tener valores por defecto ("" ó 0 en numéricos)
+* No agregar lógica de negocios en la interfaz.
 * Ajustes varios por coherencia
 
 24/04/2018

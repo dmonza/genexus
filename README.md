@@ -22,6 +22,7 @@ La presente guía se realizó buscando los siguientes objetivos:
   1. [Comentarios](#comentarios)
   1. [Comandos y funciones](#comandos-y-funciones)
   1. [Parámetros](#parámetros)
+  1. [Subrutinas](#subrutinas)
   1. [Buenas prácticas](#buenas-prácticas)
   1. [Recursos](#recursos)
   1. [Empresas que utilizan esta guia](#empresas-que-utilizan-esta-guia)

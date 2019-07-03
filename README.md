@@ -152,7 +152,7 @@ La presente guía se realizó buscando los siguientes objetivos:
 
     // bien
     if &DocumentoTipo = DocumentoTipo.Venta
-       msg( "Venta")
+        msg( "Venta")
     endif
     ```
 
@@ -174,9 +174,9 @@ La presente guía se realizó buscando los siguientes objetivos:
 
     // bien
     for each
-       where DocumentoTipo = DocumentoTipo.Venta
+        where DocumentoTipo = DocumentoTipo.Venta
 
-       ...
+        ...
     endfor
     ```
   <a name="whitespace-newline"></a><a name="2.3"></a>

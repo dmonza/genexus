@@ -10,6 +10,7 @@
 * Enums no deben tener valores por defecto ("" ó 0 en numéricos)
 * No agregar lógica de negocios en la interfaz.
 * Ajustes varios por coherencia
+* Se agrega sección subrutinas (Big Cheese)
 
 24/04/2018
 * Mejoras y correcciones varias

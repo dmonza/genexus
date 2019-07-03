@@ -193,7 +193,6 @@ La presente guía se realizó buscando los siguientes objetivos:
     // mal
     for each
        defined by ClienteNombre
-
        for each Documentos
           ...
        endfor
@@ -730,7 +729,7 @@ La presente guía se realizó buscando los siguientes objetivos:
 	> Ayuda a no re-crear la tabla ante una Reorg. Especialmente en tablas grandes donde el tiempo de migración de datos puede ser demasiado largo. 
 
 <a name="bpractices--session"></a><a name="10.8"></a>
-  - [10.8](#bpractices--null) Evitar acceder a sesiones (websession) desde procedimientos.
+  - [10.8](#bpractices--null) Evitar acceder a sesiones (websession) desde procedimientos con lógica de negocios.
 	> El acceso a sesiones debe ser responsabilidad de la interfaz. Al trabajar con sesiones dentro de procedimietos estamos introduciendo lógica de la interfaz en el dominio del problema. Debido a esto, depues podemos tener problemas si deseamos utilizar dichos procedimietnos en ejecuciones por consola batch o win.
 
 <a name="bpractices--business"></a><a name="10.9"></a>

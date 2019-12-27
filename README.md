@@ -387,7 +387,7 @@ La presente guía se realizó buscando los siguientes objetivos:
 ## Comentarios
 
   <a name="comments--multiline"></a><a name="6.1"></a>
-  - [6.1](#comments--multiline) Utilizar `/** ... */` para comentarios multi-línea en descripciones de funcionamiento. Se puede seguir utilizando `//` ya qeu Genexus permite auto-comentar con Ctrl-Q | Ctrl-Shift-Q.
+  - [6.1](#comments--multiline) Utilizar `/** ... */` para comentarios multi-línea en descripciones de funcionamiento. Se puede seguir utilizando `//` ya que Genexus permite auto-comentar con Ctrl-Q | Ctrl-Shift-Q.
 
     ```javascript
     // mal
@@ -412,7 +412,7 @@ La presente guía se realizó buscando los siguientes objetivos:
     ```
 
   <a name="comments--singleline"></a><a name="6.2"></a>
-  - [6.2](#comments--singleline) Utilizar `//` para comentarios de una sola línea. Estos comentarios deben estar una línea antes del sujeto a comentar. Dejar una línea en blanco antes del comentarios a no ser que seal la pimer línea del bloque.
+  - [6.2](#comments--singleline) Utilizar `//` para comentarios de una sola línea. Estos comentarios deben estar una línea antes del sujeto a comentar. Dejar una línea en blanco antes del comentarios a no ser que sea la pimer línea del bloque o se esté comentando un where de for-each.
 
     ```javascript
     // mal

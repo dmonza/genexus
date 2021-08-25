@@ -2,6 +2,11 @@
 - Glosario
 - Patrón - Sobrecarga en GeneXus
 
+Release:
+* Dominios en plural
+* Commillas simples por defecto
+
+
 02/07/2019
 * Se agrega Big Cheese como empresa que colabora con el estandar.
 * Se modifica sección de comentarios

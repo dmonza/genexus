@@ -70,18 +70,19 @@ La presente guía se realizó buscando los siguientes objetivos:
     ```
 
   <a name="naming-enums"></a><a name="1.4"></a>
-  - [1.4](#naming-enums) Nombrar los dominios enumerados sin abreviar, comenzando con la entidad en singular y siguiendo con el calificador enumerado también en singular. Los valores enumerados también se deben especificar en singular.
-	> Esto es para facilitar la definición de atributos y variables basadas en un dominio (GeneXus lo hará automáticamente).
+  - [1.4](#naming-enums) Nombrar los dominios enumerados sin abreviar, comenzando con la entidad en singular y siguiendo con el calificador enumerado en plural. Los valores enumerados deben especificarse en singular.
+	> Se realiza de esta forma para que no colisionen atributos con dominios enumerados.
 
     ```javascript
     // mal
+    DocumentoTipo
     DocumentosTipo
     DocumentosTipos
     DocTipos
 
     // bien
-    DocumentoTipo { Venta, Compra, etc}
-    DocumentoModo { Credito, Débito}
+    DocumentoTipos { Venta, Compra, etc}
+    DocumentoModos { Credito, Débito}
     ```
 
   <a name="naming-procs"></a><a name="1.5"></a>
@@ -371,15 +372,15 @@ La presente guía se realizó buscando los siguientes objetivos:
     &ParVal = ParamGet( !"GLOBAL ENCRYPT KEY")
     ```
   <a name="strings-quotation"></a><a name="5.3"></a>
-  - [5.3](#strings-trans) Utilizar comilla doble por defecto.
-    > Estandarización de código para facilitar la lectura.
+  - [5.3](#strings-trans) Utilizar comilla simple por defecto.
+    > Esto lo realizamos así ya que cada evento o subrutina creado por GeneXus, utiliza comilla simple.
 
 	 ```javascript
     // mal
-    &Msg = 'Hola mundo!'
+    &Msg = "Hola mundo!"
 
     // bien
-    &Msg = "Hola mundo!"
+    &Msg = 'Hola mundo!'
     ```
 
 **[Volver al inicio](#tabla-de-contenidos)**

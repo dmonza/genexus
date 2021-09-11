@@ -1,6 +1,7 @@
 ﻿Whishlist
 - Glosario
 - Patrón - Sobrecarga en GeneXus
+- No utilizar nombre de clases directamente, utilizar prefijo para poder referenciar donde se utiliza ThemeClass:EditForm
 
 Release:
 * Dominios en plural

@@ -1,4 +1,16 @@
 ﻿Whishlist
+- Proc. para obtener prámetro
+	- Por medio de referencias se puede ver quién lo usa
+	- Valor por defecto o inicializar si es necesario
+	- Utilizar un dominio de parámetros.
+	
+- Nombrar Objetos:
+	- TextBlock: Text[Nombre]
+	- SDT: [Nombre]SDT
+	- Proc. que inserta un registro en una tabla [Nombre]Insert
+	- Proc. que inserta/update un registro en una tabla [Nombre]Upsert
+
+
 - Glosario
 - Patrón - Sobrecarga en GeneXus
 - No utilizar nombre de clases directamente, utilizar prefijo para poder referenciar donde se utiliza ThemeClass:EditForm

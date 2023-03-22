@@ -1,0 +1,11 @@
+<!-- https://ealmeida.blogspot.com/2015/03/comprimir-una-kb-genexus.html -->
+
+<Project DefaultTargets="OpenAndBuildAll" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(GXDir)\Genexus.Tasks.targets" />
+    <Target Name="OpenKnowledgeBase">
+        <OpenKnowledgeBase Directory="$(KBDir)" CompressData="True"  EventsSuspended="True" />
+    </Target>
+    <Target Name="CheckKnowledgeBase" DependsOnTargets="OpenKnowledgeBase">
+        <CheckKnowledgeBase Fix="true" />
+    </Target>
+</Project>

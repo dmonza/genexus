@@ -1,4 +1,5 @@
 ﻿Whishlist
+- Al leer un booleano desde string utilizar FromString. True tanto para: 1 como para TRUE
 - Proc. para obtener prámetro
 	- Por medio de referencias se puede ver quién lo usa
 	- Valor por defecto o inicializar si es necesario

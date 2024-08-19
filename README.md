@@ -757,7 +757,8 @@ La presente guía se realizó buscando los siguientes objetivos:
 - [**GeneXus**](https://www.genexus.com)
 - [**TributApp**](https://www.tributapp.com)
 - [**I+Dev**](http://www.imasdev.com)
-- [**Big Cheese**](http://bigcheese.com.uy)
+- [**Big Cheese**](https://bigcheese.com.uy)
+- [**Neuronic**](https://neuronic.com.ar/)
 
 
 **[Volver al inicio](#tabla-de-contenidos)**

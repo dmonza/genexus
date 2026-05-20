@@ -1,4 +1,11 @@
 ﻿Whishlist
+- Chequear variables previo a for each. Mejora performance.
+if not &TeamId.IsEmpty()
+	for each Team
+		&OrganizationId = OrganizationId
+	endfor
+endif
+
 - Al leer un booleano desde string utilizar FromString. True tanto para: 1 como para TRUE
 - Proc. para obtener prámetro
 	- Por medio de referencias se puede ver quién lo usa

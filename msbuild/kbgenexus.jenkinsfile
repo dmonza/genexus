@@ -1,0 +1,184 @@
+/**
+ * KBGeneXus build & deploy pipeline (template).
+ *
+ * Autor: Daniel Monza - https://sincrum.com
+ *
+ * Flujo:
+ *   1. GXServerCheckout  - Sincroniza la KB desde GeneXus Server al workspace local.
+ *   2. GXBuild           - Ejecuta BuildAll sobre la KB usando genexus-tasks.msbuild.
+ *   3. PackageDU         - Genera las Deployment Units (Frontend y Backend) en paralelo.
+ *   4. Deploy            - Publica las DUs en la carpeta destino (DEPLOY_TARGET).
+ *
+ * Configuración del template:
+ *   Antes de usar este pipeline en un nuevo entorno, revisar y ajustar TODOS los
+ *   valores marcados con TODO en el bloque `environment`, y registrar en Jenkins
+ *   las credenciales referenciadas por GXSERVER_CREDID y GXAPPKEY_CREDID.
+ */
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+        timeout(time: 60, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+        disableConcurrentBuilds()
+    }
+
+    environment {
+        // ==================== CONFIGURACIÓN DEL TEMPLATE (TODO) ====================
+        // Revisar y ajustar al instalar el pipeline en un nuevo entorno.
+
+        // --- Rutas en el agente --------------------------------------------------
+        // GX_INSTALL_DIR: carpeta raíz de la instalación de GeneXus en el agente.
+        // Debe contener: deploy.msbuild, GeneXus.Tasks.targets, Genexus.Server.Tasks.targets, GXtest.targets.
+        GX_INSTALL_DIR   = 'C:\\Datos\\GeneXus\\GeneXus18u13'  // TODO: ajustar al path real del agente
+
+        // --- Servidor GeneXus ----------------------------------------------------
+        GXSERVER_URL     = 'http://genexus-server.example.com/kbs'  // TODO: URL del GeneXus Server
+        
+        // --- KB: identificación y destino ----------------------------------------
+        KB_PATH          = 'C:\\KBs\\MiKB'              // TODO: ajustar al path real de la KB
+        KB_NAME          = 'MiKB'                       // TODO: nombre de la KB en GeneXus Server
+        KB_VERSION       = 'Trunk'                      // TODO: versión (branch) de la KB en GeneXus Server
+        KB_ENVIRONMENT   = 'ProdNet'                    // TODO: environment de la KB a compilar/desplegar
+        DEPLOY_TARGET    = 'C:\\Versionado\\Deploy'     // TODO: carpeta destino donde se publican las Deployment Units
+
+        // --- Jenkins: tools y credenciales ---------------------------------------
+        MSBUILD_TOOL     = 'MSBuild_Default'        // TODO: ID del MSBuild registrado en Global Tool Configuration
+        GXSERVER_CREDID  = 'gxserver-credentials'   // TODO: ID de credencial usernamePassword para GeneXus Server
+        GXAPPKEY_CREDID  = 'gx-application-key'     // TODO: ID de credencial secret text con APPLICATION_KEY del deploy
+
+        // --- KB: proyectos y objetos a empaquetar --------------------------------
+        FRONTEND_PROJECT = 'PrjFrontend'   // TODO: nombre del .gxdproj del frontend
+        FRONTEND_OBJECTS = 'Frontend'      // TODO: objetos a incluir en la DU frontend
+        BACKEND_PROJECT  = 'PrjBackend'    // TODO: nombre del .gxdproj del backend
+        BACKEND_OBJECTS  = 'Backend'       // TODO: objetos a incluir en la DU backend
+
+        // ==================== DERIVADAS (no editar) ===============================
+        BUILD_SCRIPT     = "${env.WORKSPACE}\\genexus-tasks.msbuild"
+        STAGING_DIR      = "${env.WORKSPACE}\\staging"
+        FRONTEND_STAGE   = "${env.WORKSPACE}\\staging\\frontend"
+        BACKEND_STAGE    = "${env.WORKSPACE}\\staging\\backend"
+    }
+
+    stages {
+        stage('GXServerCheckout') {
+            steps {
+                echo "Checkout KB '${env.KB_NAME}' (${env.KB_VERSION}) desde ${env.GXSERVER_URL} → ${env.KB_PATH}"
+                withCredentials([usernamePassword(
+                    credentialsId:    env.GXSERVER_CREDID,
+                    usernameVariable: 'GXSERVER_USER',
+                    passwordVariable: 'GXSERVER_PASS'
+                )]) {
+                    bat """
+                    "${tool(env.MSBUILD_TOOL)}\\MSBuild.exe" /nologo /verbosity:minimal "${env.BUILD_SCRIPT}" ^
+                      /t:Update ^
+                      /p:GeneXusInstallation="${env.GX_INSTALL_DIR}" ^
+                      /p:KBPath="${env.KB_PATH}" ^
+                      /p:EnvironmentName="${env.KB_ENVIRONMENT}" ^
+                      /p:GXServerUser=%GXSERVER_USER% ^
+                      /p:GXServerPass=%GXSERVER_PASS%
+                    """
+                }
+            }
+        }
+
+        stage('GXBuild') {
+            steps {
+                echo "BuildAll sobre KB ${env.KB_PATH} (env: ${env.KB_ENVIRONMENT})"
+                bat """
+                "${tool(env.MSBUILD_TOOL)}\\MSBuild.exe" /nologo /verbosity:minimal "${env.BUILD_SCRIPT}" ^
+                  /t:BuildAll ^
+                  /p:GeneXusInstallation="${env.GX_INSTALL_DIR}" ^
+                  /p:KBPath="${env.KB_PATH}" ^
+                  /p:EnvironmentName="${env.KB_ENVIRONMENT}"
+                """
+            }
+        }
+
+        stage('Package Deployment Units') {
+            parallel {
+                stage('Frontend DU') {
+                    steps {
+                        packageDeploymentUnit(
+                            projectName: env.FRONTEND_PROJECT,
+                            objectNames: env.FRONTEND_OBJECTS,
+                            includeGam:  'True',
+                            outputDir:   env.FRONTEND_STAGE
+                        )
+                    }
+                }
+                stage('Backend DU') {
+                    steps {
+                        packageDeploymentUnit(
+                            projectName: env.BACKEND_PROJECT,
+                            objectNames: env.BACKEND_OBJECTS,
+                            includeGam:  'False',
+                            outputDir:   env.BACKEND_STAGE
+                        )
+                    }
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Publicando Deployment Units en ${env.DEPLOY_TARGET}"
+                bat """
+                if not exist "${env.DEPLOY_TARGET}\\frontend" mkdir "${env.DEPLOY_TARGET}\\frontend"
+                if not exist "${env.DEPLOY_TARGET}\\backend"  mkdir "${env.DEPLOY_TARGET}\\backend"
+                xcopy /Y /I /E /Q "${env.FRONTEND_STAGE}\\*" "${env.DEPLOY_TARGET}\\frontend\\"
+                xcopy /Y /I /E /Q "${env.BACKEND_STAGE}\\*"  "${env.DEPLOY_TARGET}\\backend\\"
+                """
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'staging/**', allowEmptyArchive: true, fingerprint: true
+            cleanWs(deleteDirs: true, notFailBuild: true)
+        }
+        success  { echo "Build #${env.BUILD_NUMBER} OK — KB '${env.KB_NAME}' publicada en ${env.DEPLOY_TARGET}" }
+        unstable { echo "Build #${env.BUILD_NUMBER} inestable" }
+        failure  { echo "Build #${env.BUILD_NUMBER} falló" }
+    }
+}
+
+/**
+ * Genera una Deployment Unit invocando los dos pasos estándar de GeneXus:
+ *   1. CreateDeploy   sobre deploy.msbuild       → genera el .gxdproj.
+ *   2. CreatePackage  sobre el .gxdproj generado → genera el paquete final en outputDir.
+ *
+ * El APPLICATION_KEY se inyecta como variable de entorno desde una credencial 'secret text',
+ * evitando exponerlo en el Jenkinsfile o en los logs.
+ */
+def packageDeploymentUnit(Map cfg) {
+    withCredentials([string(credentialsId: env.GXAPPKEY_CREDID, variable: 'GX_APP_KEY')]) {
+        bat """
+        "${tool(env.MSBUILD_TOOL)}\\MSBuild.exe" "${env.GX_INSTALL_DIR}\\deploy.msbuild" /nologo /verbosity:quiet /ToolsVersion:4.0 ^
+          /t:CreateDeploy ^
+          /p:GX_PROGRAM_DIR="${env.GX_INSTALL_DIR}" ^
+          /p:KBPath="${env.KB_PATH}" ^
+          /p:KBEnvironment="${env.KB_ENVIRONMENT}" ^
+          /p:ObjectNames="${cfg.objectNames}" ^
+          /p:ProjectName="${cfg.projectName}" ^
+          /p:INCLUDE_GAM="${cfg.includeGam}" ^
+          /p:APPLICATION_KEY="%GX_APP_KEY%" ^
+          /p:TimeStamp="FIXED"
+        """
+
+        bat """
+        "${tool(env.MSBUILD_TOOL)}\\MSBuild.exe" "${env.KB_PATH}\\${env.KB_ENVIRONMENT}\\web\\${cfg.projectName}.gxdproj" /nologo /verbosity:minimal /ToolsVersion:4.0 ^
+          /t:CreatePackage ^
+          /p:GX_PROGRAM_DIR="${env.GX_INSTALL_DIR}" ^
+          /p:DEPLOY_TYPE="BINARIES" ^
+          /p:INCLUDE_GAM="${cfg.includeGam}" ^
+          /p:APPLICATION_KEY="%GX_APP_KEY%" ^
+          /p:PACKAGE_FORMAT="Automatic" ^
+          /p:DeployFullPath="${cfg.outputDir}" ^
+          /p:DeployFileFullPath="${env.WORKSPACE}" ^
+          /p:TimeStamp="FIXED"
+        """
+    }
+}

@@ -1,0 +1,156 @@
+<Project DefaultTargets="BuildAll" InitialTargets="_ValidateRequiredProperties" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!--
+    GeneXus - Build & Test orchestration script.
+    Invocado desde kbgenexus.jenkinsfile (targets: Update, BuildAll).
+
+    Autor: Daniel Monza - https://sincrum.com
+
+    Propiedades OBLIGATORIAS (debe pasarse via /p:Name=Value, sin default):
+      GeneXusInstallation  Carpeta de instalacion del SDK de GeneXus (.targets).
+
+    Propiedades opcionales / override-ables via /p:Name=Value:
+      KBPath               Ruta local de la Knowledge Base.
+      KBVersion            Version de la KB (informativo).
+      EnvironmentName      Environment activo dentro de la KB.
+      GXServerUser/Pass    Credenciales de GeneXus Server.
+      RunnerName           Objeto runner de tests a compilar.
+      TestType             'UI' | 'Unit' | 'All' (default All).
+      DetailedResults      true | false (default true).
+      JUnitTestFilePath    Ruta de salida del archivo JUnit.
+      ExecutionDataFilePath  JSON con datos de ejecucion para RunTestsList.
+      TestName             Nombre del test para RecordMockingDataForTest.
+  -->
+
+  <PropertyGroup>
+    <GXServerUser></GXServerUser>
+    <GXServerPass></GXServerPass>
+    <KBPath></KBPath>
+    <KBVersion></KBVersion>
+    <JUnitTestFilePath></JUnitTestFilePath>
+    <RunnerName></RunnerName>
+    <TestType>All</TestType>
+    <DetailedResults>true</DetailedResults>
+    <EnvironmentName></EnvironmentName>
+    <ExecutionDataFilePath></ExecutionDataFilePath>
+  </PropertyGroup>
+
+  <!--
+    Imports condicionales: si no se especifico GeneXusInstallation, los .targets
+    no se cargan y _ValidateRequiredProperties aborta el build con un mensaje claro,
+    en vez de fallar con un error cripico de "archivo no encontrado".
+  -->
+  <Import Project="$(GeneXusInstallation)\GeneXus.Tasks.targets"        Condition="'$(GeneXusInstallation)' != ''" />
+  <Import Project="$(GeneXusInstallation)\Genexus.Server.Tasks.targets" Condition="'$(GeneXusInstallation)' != ''" />
+  <Import Project="$(GeneXusInstallation)\GXtest.targets"               Condition="'$(GeneXusInstallation)' != ''" />
+
+  <Target Name="_ValidateRequiredProperties">
+    <Error Condition="'$(GeneXusInstallation)' == ''"
+           Text="La propiedad 'GeneXusInstallation' es obligatoria. Pasala con /p:GeneXusInstallation=ruta\al\SDK\de\GeneXus (carpeta que contiene GeneXus.Tasks.targets)." />
+  </Target>
+
+  <Target Name="Update">
+    <OpenKnowledgeBase Directory="$(KBPath)" />
+    <SetActiveEnvironment EnvironmentName="$(EnvironmentName)" />
+    <UpdateFromServer ServerUserName="$(GXServerUser)" ServerPassword="$(GXServerPass)" />
+    <CloseKnowledgeBase />
+  </Target>
+
+  <Target Name="BuildAll">
+    <OpenKnowledgeBase Directory="$(KBPath)" />
+    <SetActiveEnvironment EnvironmentName="$(EnvironmentName)" />
+    <BuildAll ForceRebuild="false" CompileMains="true" />
+    <CloseKnowledgeBase />
+  </Target>
+
+  <Target Name="RunAllTests">
+    <OpenKnowledgeBase Directory="$(KBPath)" />
+    <SetActiveEnvironment EnvironmentName="$(EnvironmentName)" />
+    <UpdateTestRefs Type="$(TestType)" ServerUserName="$(GXServerUser)" ServerPassword="$(GXServerPass)" />
+    <BuildOne BuildCalled="true" ObjectName="$(RunnerName)" />
+    <!-- Type: 'UI' (solo UI), 'Unit' (solo unit) o 'All' (ambos). -->
+    <RunTests Type="$(TestType)" DetailedResults="$(DetailedResults)" ServerUserName="$(GXServerUser)" ServerPassword="$(GXServerPass)" />
+    <JUnitExportTests JUnitTestFilePath="$(JUnitTestFilePath)" ServerUserName="$(GXServerUser)" ServerPassword="$(GXServerPass)">
+      <Output TaskParameter="JUnitTestFilePath" PropertyName="JUnitTestFilePathOutput" />
+    </JUnitExportTests>
+    <CloseKnowledgeBase />
+  </Target>
+
+  <Target Name="RunTestsList">
+    <OpenKnowledgeBase Directory="$(KBPath)" />
+    <SetActiveEnvironment EnvironmentName="$(EnvironmentName)" />
+    <UpdateTestRefs ExecutionDataFilePath="$(ExecutionDataFilePath)" ServerUserName="$(GXServerUser)" ServerPassword="$(GXServerPass)" />
+    <BuildOne BuildCalled="true" ObjectName="$(RunnerName)" />
+    <RunTestsList ExecutionDataFilePath="$(ExecutionDataFilePath)" DetailedResults="$(DetailedResults)" ServerUserName="$(GXServerUser)" ServerPassword="$(GXServerPass)" />
+    <CloseKnowledgeBase />
+  </Target>
+
+  <Target Name="RecordMockingDataForTest">
+    <OpenKnowledgeBase Directory="$(KBPath)" />
+    <SetActiveEnvironment EnvironmentName="$(EnvironmentName)" />
+    <UpdateTestRefs TestName="$(TestName)" ServerUserName="$(GXServerUser)" ServerPassword="$(GXServerPass)" />
+    <BuildOne BuildCalled="true" ObjectName="$(RunnerName)" />
+    <RecordMockingData TestName="$(TestName)" ServerUserName="$(GXServerUser)" ServerPassword="$(GXServerPass)">
+      <Output TaskParameter="MockDataFilePath" PropertyName="MockPath" />
+    </RecordMockingData>
+    <CloseKnowledgeBase />
+  </Target>
+
+  <Target Name="RunIOSUITests">
+    <RunIOSUITests ObjectName="$(ObjectName)" DeviceName="$(DeviceName)" DeviceOS="$(DeviceOS)" />
+  </Target>
+
+  <!-- =========================================================
+       CheckAndCompress  (mantenimiento de la KB)
+       =========================================================
+       Mantiene sana la KB en una sola pasada:
+         1) Apertura con compactacion del .mdf  (CompressData=True)
+         2) Chequeo + reparacion de consistencia (CheckKnowledgeBase Fix=true)
+         3) Cierre GARANTIZADO de la KB          (CloseKnowledgeBase)
+
+       CompressData="True" / EventsSuspended="True"
+         No documentados en el wiki oficial pero soportados. Compactan
+         el .mdf inflado por anos de uso y aceleran la apertura en KBs
+         grandes (no dispara cada listener interno del IDE).
+         Fuente: Almeida, "Comprimir una KB GeneXus" (2015).
+
+       Fix="true"
+         Reorganiza indices (fragmentacion 5%-30%), reconstruye los >30%
+         y corrige errores internos. Sin Fix solo diagnostica.
+
+       Cierre garantizado via OnError + CallTarget:
+         OnError solo se dispara cuando falla un task del MISMO target.
+         Por eso Open/Check/Close se invocan con <CallTarget/> DENTRO de
+         este wrapper (corren como tasks del target llamante), y su falla
+         dispara el OnError local que cierra la KB. Asi, ante un fallo del
+         Check (timeout, disco lleno), no queda GXLOCK colgado bloqueando
+         la apertura desde el IDE.
+         Fuente: MSDN OnError - "fires when a task in the target that
+         contains it fails". OnError debe ser el ULTIMO elemento del target.
+
+       Tiempos de referencia: ~13.000 objetos => ~20 min; cada version
+       adicional suma ~1h. Conviene borrar versiones viejas antes de correr.
+  ========================================================= -->
+  <Target Name="CheckAndCompress">
+    <CallTarget Targets="_OpenAndCompressKB" />
+    <CallTarget Targets="_CheckAndFixKB" />
+    <CallTarget Targets="_CloseKB" />
+    <OnError ExecuteTargets="_CloseKB" />
+  </Target>
+
+  <Target Name="_OpenAndCompressKB">
+    <Message Text="Abriendo KB en $(KBPath) (CompressData=True, EventsSuspended=True)..." Importance="high" />
+    <OpenKnowledgeBase Directory="$(KBPath)" CompressData="True" EventsSuspended="True" />
+  </Target>
+
+  <Target Name="_CheckAndFixKB" DependsOnTargets="_OpenAndCompressKB">
+    <Message Text="Ejecutando CheckKnowledgeBase Fix='true'..." Importance="high" />
+    <CheckKnowledgeBase Fix="true" />
+  </Target>
+
+  <Target Name="_CloseKB">
+    <Message Text="Cerrando KB..." Importance="high" />
+    <CloseKnowledgeBase />
+  </Target>
+
+</Project>

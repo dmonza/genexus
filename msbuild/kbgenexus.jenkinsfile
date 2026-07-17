@@ -39,7 +39,6 @@ pipeline {
         // --- KB: identificación y destino ----------------------------------------
         KB_PATH          = 'C:\\KBs\\MiKB'              // TODO: ajustar al path real de la KB
         KB_NAME          = 'MiKB'                       // TODO: nombre de la KB en GeneXus Server
-        KB_VERSION       = 'Trunk'                      // TODO: versión (branch) de la KB en GeneXus Server
         KB_ENVIRONMENT   = 'ProdNet'                    // TODO: environment de la KB a compilar/desplegar
         DEPLOY_TARGET    = 'C:\\Versionado\\Deploy'     // TODO: carpeta destino donde se publican las Deployment Units
 
@@ -54,6 +53,16 @@ pipeline {
         BACKEND_PROJECT  = 'PrjBackend'    // TODO: nombre del .gxdproj del backend
         BACKEND_OBJECTS  = 'Backend'       // TODO: objetos a incluir en la DU backend
 
+        // --- Java: empaquetado WAR/EAR (opcional) --------------------------------
+        // PACKAGE_FORMAT por DU: 'war' | 'ear' | 'Automatic'.
+        //   .NET → dejar 'Automatic' (comportamiento por defecto, igual que hasta ahora).
+        //   Java → 'war' (o 'ear') para que GeneXus genere el WAR.
+        // TARGET_JRE / APP_SERVER solo se usan cuando el formato es 'war'/'ear'.
+        FRONTEND_PACKAGE_FORMAT = 'Automatic'           // TODO: 'war' para Java frontend
+        BACKEND_PACKAGE_FORMAT  = 'Automatic'           // TODO: 'war' para Java backend
+        TARGET_JRE              = '11'                  // TODO: versión del JRE destino (Java). Default GX: 9
+        APP_SERVER              = 'Generic Servlet 6.0' // TODO: Application Server (Java)
+
         // ==================== DERIVADAS (no editar) ===============================
         BUILD_SCRIPT     = "${env.WORKSPACE}\\genexus-tasks.msbuild"
         STAGING_DIR      = "${env.WORKSPACE}\\staging"
@@ -64,7 +73,7 @@ pipeline {
     stages {
         stage('GXServerCheckout') {
             steps {
-                echo "Checkout KB '${env.KB_NAME}' (${env.KB_VERSION}) desde ${env.GXSERVER_URL} → ${env.KB_PATH}"
+                echo "Checkout KB '${env.KB_NAME}' desde ${env.GXSERVER_URL} → ${env.KB_PATH}"
                 withCredentials([usernamePassword(
                     credentialsId:    env.GXSERVER_CREDID,
                     usernameVariable: 'GXSERVER_USER',
@@ -101,20 +110,22 @@ pipeline {
                 stage('Frontend DU') {
                     steps {
                         packageDeploymentUnit(
-                            projectName: env.FRONTEND_PROJECT,
-                            objectNames: env.FRONTEND_OBJECTS,
-                            includeGam:  'True',
-                            outputDir:   env.FRONTEND_STAGE
+                            projectName:   env.FRONTEND_PROJECT,
+                            objectNames:   env.FRONTEND_OBJECTS,
+                            includeGam:    'True',
+                            outputDir:     env.FRONTEND_STAGE,
+                            packageFormat: env.FRONTEND_PACKAGE_FORMAT
                         )
                     }
                 }
                 stage('Backend DU') {
                     steps {
                         packageDeploymentUnit(
-                            projectName: env.BACKEND_PROJECT,
-                            objectNames: env.BACKEND_OBJECTS,
-                            includeGam:  'False',
-                            outputDir:   env.BACKEND_STAGE
+                            projectName:   env.BACKEND_PROJECT,
+                            objectNames:   env.BACKEND_OBJECTS,
+                            includeGam:    'False',
+                            outputDir:     env.BACKEND_STAGE,
+                            packageFormat: env.BACKEND_PACKAGE_FORMAT
                         )
                     }
                 }
@@ -152,8 +163,28 @@ pipeline {
  *
  * El APPLICATION_KEY se inyecta como variable de entorno desde una credencial 'secret text',
  * evitando exponerlo en el Jenkinsfile o en los logs.
+ *
+ * Parámetros (cfg):
+ *   projectName, objectNames, includeGam, outputDir  — obligatorios.
+ *   packageFormat  — 'Automatic' (default, .NET) | 'war' | 'ear' (Java).
+ *                    Con 'war'/'ear' se pasan además TARGET_JRE y ApplicationServer.
+ *   dprojSubdir    — subcarpeta del environment donde queda el .gxdproj (default 'web').
+ *
+ * Compatibilidad: sin packageFormat (o con 'Automatic') el comando generado es idéntico
+ * al de siempre para .NET; las propiedades Java solo se agregan para war/ear.
  */
 def packageDeploymentUnit(Map cfg) {
+    def packageFormat = cfg.packageFormat ?: 'Automatic'
+    def dprojSubdir   = cfg.dprojSubdir ?: 'web'
+
+    // Propiedades específicas de Java: solo cuando se empaqueta como WAR/EAR.
+    def javaArgs = ''
+    if (packageFormat?.toLowerCase() in ['war', 'ear']) {
+        javaArgs = """ ^
+          /p:TARGET_JRE="${env.TARGET_JRE}" ^
+          /p:ApplicationServer="${env.APP_SERVER}\""""
+    }
+
     withCredentials([string(credentialsId: env.GXAPPKEY_CREDID, variable: 'GX_APP_KEY')]) {
         bat """
         "${tool(env.MSBUILD_TOOL)}\\MSBuild.exe" "${env.GX_INSTALL_DIR}\\deploy.msbuild" /nologo /verbosity:quiet /ToolsVersion:4.0 ^
@@ -165,17 +196,18 @@ def packageDeploymentUnit(Map cfg) {
           /p:ProjectName="${cfg.projectName}" ^
           /p:INCLUDE_GAM="${cfg.includeGam}" ^
           /p:APPLICATION_KEY="%GX_APP_KEY%" ^
+          /p:PACKAGE_FORMAT="${packageFormat}"${javaArgs} ^
           /p:TimeStamp="FIXED"
         """
 
         bat """
-        "${tool(env.MSBUILD_TOOL)}\\MSBuild.exe" "${env.KB_PATH}\\${env.KB_ENVIRONMENT}\\web\\${cfg.projectName}.gxdproj" /nologo /verbosity:minimal /ToolsVersion:4.0 ^
+        "${tool(env.MSBUILD_TOOL)}\\MSBuild.exe" "${env.KB_PATH}\\${env.KB_ENVIRONMENT}\\${dprojSubdir}\\${cfg.projectName}.gxdproj" /nologo /verbosity:minimal /ToolsVersion:4.0 ^
           /t:CreatePackage ^
           /p:GX_PROGRAM_DIR="${env.GX_INSTALL_DIR}" ^
           /p:DEPLOY_TYPE="BINARIES" ^
           /p:INCLUDE_GAM="${cfg.includeGam}" ^
           /p:APPLICATION_KEY="%GX_APP_KEY%" ^
-          /p:PACKAGE_FORMAT="Automatic" ^
+          /p:PACKAGE_FORMAT="${packageFormat}" ^
           /p:DeployFullPath="${cfg.outputDir}" ^
           /p:DeployFileFullPath="${env.WORKSPACE}" ^
           /p:TimeStamp="FIXED"

@@ -1,0 +1,37 @@
+; Guia de estilo para el desarrollo en GeneXus
+; https://editorconfig.org
+
+root = true
+
+; Tabulador como identacion por defecto, segun la regla 2.1 de la guia.
+; Los formatos que ya viven en el repo con otra convencion se sobreescriben abajo.
+; CRLF porque es lo que ya usa todo el repo: declarar lf haria que cada editor
+; reescribiera los archivos enteros al guardar, por diferencias de fin de linea.
+[*]
+indent_style = tab
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+; La guia misma. Markdown usa espacios para anidar listas y bloques:
+; un tabulador rompe la estructura del documento.
+; No se recorta el espacio final porque dos espacios son un salto de linea duro.
+[*.md]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = false
+
+[*.{msbuild,json}]
+indent_style = space
+indent_size = 2
+
+[*.jenkinsfile]
+indent_style = space
+indent_size = 2
+
+; El texto legal se toma tal cual lo publica Creative Commons.
+[LICENSE]
+indent_style = space
+trim_trailing_whitespace = false
+insert_final_newline = false

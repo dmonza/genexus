@@ -3,7 +3,9 @@ por [Daniel Monza](https://uy.linkedin.com/in/daniel-monza-62515112)
 
 [![Licencia Creative Commons](https://i.creativecommons.org/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
-Por correcciones o mejoras, pueden utilizar los [issues de github](https://github.com/sincrum/genexus/issues) o enviarlas por email a [info@sincrum.com](mailto:info@sincrum.com).
+Por correcciones o mejoras, pueden utilizar los [issues de github](https://github.com/sincrum/genexus/issues) o enviarlas por email a [info@sincrum.com](mailto:info@sincrum.com). Si va a enviar un cambio, lea antes la [guía de contribución](CONTRIBUTING.md).
+
+Los cambios ya publicados se registran en el [changelog](CHANGELOG.md) y las reglas propuestas todavía no incorporadas, en el [roadmap](ROADMAP.md).
 
 ## Objetivos
 La presente guía se realizó buscando los siguientes objetivos:
@@ -774,6 +776,8 @@ Esta guia de estilo se encuentra también en los siguientes lenguajes:
 [![Licencia Creative Commons](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
 Esta obra está bajo una Licencia [Creative Commons Atribución-CompartirIgual 4.0 Internacional](http://creativecommons.org/licenses/by-sa/4.0/)
+
+El texto completo de la licencia está en el archivo [LICENSE](LICENSE).
 
 Basado en [la guia de Javascript de AirBNB](http://airbnb.io/javascript/)
 
